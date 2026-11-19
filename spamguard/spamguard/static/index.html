@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SpamGuard</title>
+<style>
+:root{--bg:#eef2f0;--panel:#fff;--ink:#14201b;--mute:#5d6b64;--line:#d3dcd7;--accent:#1f5c4a;--spam:#b3261e;--spam-bg:#fbe9e7;--ok:#1f5c4a;--ok-bg:#e3f1ea}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1512;--panel:#16201b;--ink:#e6efea;--mute:#98a8a0;--line:#2a3830;--accent:#6fc2a5;--spam:#ff8a80;--spam-bg:#3a1d1a;--ok:#6fc2a5;--ok-bg:#183328}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Segoe UI",system-ui,sans-serif}
+header{display:flex;align-items:center;gap:1rem;padding:.8rem 1.25rem;border-bottom:1px solid var(--line);background:var(--panel)}
+header b{font-size:1.1rem;margin-right:auto}
+header a,header button{color:var(--ink);text-decoration:none;background:none;border:0;font:inherit;cursor:pointer;padding:.3rem .5rem;border-radius:6px}
+header a.on{background:var(--ok-bg);color:var(--ok)}
+main{max-width:860px;margin:2rem auto;padding:0 1.25rem}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:1.5rem}
+h1{font-size:1.6rem;margin:0 0 .25rem}h2{font-size:1.15rem;margin:0 0 1rem}
+p.sub{color:var(--mute);margin:0 0 1.25rem}
+label{display:block;font-weight:600;margin:.9rem 0 .3rem}
+input,textarea,select{width:100%;padding:.65rem .75rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+textarea{min-height:170px;resize:vertical}
+input:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn{margin-top:1.1rem;background:var(--accent);color:var(--bg);border:0;border-radius:8px;padding:.7rem 1.2rem;font:inherit;font-weight:600;cursor:pointer}
+.btn:disabled{opacity:.6;cursor:wait}
+.link{background:none;border:0;color:var(--accent);cursor:pointer;font:inherit;padding:0;text-decoration:underline}
+.err{color:var(--spam);min-height:1.4rem;margin:.6rem 0 0}
+.login{max-width:400px;margin-top:8vh}
+.verdict{margin-top:1.25rem;padding:1rem 1.1rem;border-radius:8px;border-left:5px solid}
+.verdict.spam{background:var(--spam-bg);border-color:var(--spam);color:var(--spam)}
+.verdict.ok{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+.verdict p{margin:.3rem 0 0;color:var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.25rem}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:1rem}
+.stat span{display:block;font-size:2rem;font-weight:700}
+.stat small{color:var(--mute)}
+.wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{text-align:left;padding:.6rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--mute);font-weight:600}
+.tag{display:inline-block;padding:.1rem .55rem;border-radius:99px;font-size:.85rem;font-weight:600}
+.tag.spam{background:var(--spam-bg);color:var(--spam)}.tag.ok{background:var(--ok-bg);color:var(--ok)}
+.empty{color:var(--mute);padding:1rem 0}
+.tabs{display:flex;gap:.4rem;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:.5rem}
+.tab{background:none;border:0;border-bottom:3px solid transparent;color:var(--mute);font:inherit;font-weight:600;padding:.5rem .7rem;cursor:pointer}
+.tab.on{color:var(--ink);border-color:var(--accent)}
+.bar-spam{fill:var(--spam)}.bar-ok{fill:var(--ok)}.axis{font-size:11px;fill:var(--mute)}.base{stroke:var(--line)}
+@media(max-width:560px){.stats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header id="nav" hidden>
+  <b>SpamGuard</b>
+  <a href="#main" id="n-main">Check email</a>
+  <a href="#report" id="n-report">My report</a>
+  <button id="logout">Sign out</button>
+</header>
+<main id="view"></main>
+
+<script>
+const $ = s => document.querySelector(s);
+const el = (t, props = {}, ...kids) => {
+  const e = Object.assign(document.createElement(t), props);
+  kids.flat().forEach(k => e.append(k));
+  return e;
+};
+const store = {
+  get: () => { try { return localStorage.getItem("token"); } catch { return null; } },
+  set: v => { try { v ? localStorage.setItem("token", v) : localStorage.removeItem("token"); } catch {} },
+};
+
+async function api(path, opts = {}) {
+  const headers = { "Content-Type": "application/json" };
+  if (store.get()) headers.Authorization = "Bearer " + store.get();
+  const res = await fetch("/api" + path, { ...opts, headers });
+  const data = await res.json().catch(() => ({}));
+  if (res.status === 401 && store.get()) { store.set(null); location.hash = "#login"; }
+  if (!res.ok) throw new Error(typeof data.detail === "string" ? data.detail : "Check your input and try again.");
+  return data;
+}
+
+function route() {
+  const page = location.hash.slice(1) || "main";
+  const authed = !!store.get();
+  if (!authed && page !== "login") return (location.hash = "#login");
+  if (authed && page === "login") return (location.hash = "#main");
+  $("#nav").hidden = !authed;
+  ["main", "report"].forEach(p => $("#n-" + p).classList.toggle("on", p === page));
+  ({ login: loginView, main: mainView, report: reportView }[page] || mainView)();
+}
+
+function loginView() {
+  let mode = "login";
+  const view = $("#view");
+  const draw = () => {
+    const u = el("input", { id: "u", autocomplete: "username", required: true });
+    const p = el("input", { id: "p", type: "password", autocomplete: mode === "login" ? "current-password" : "new-password", required: true });
+    const err = el("p", { className: "err", role: "alert" });
+    const btn = el("button", { className: "btn", type: "submit" }, mode === "login" ? "Sign in" : "Create account");
+    const form = el("form", {},
+      el("label", { htmlFor: "u" }, "Username"), u,
+      el("label", { htmlFor: "p" }, "Password (6+ characters)"), p, err, btn);
+    form.onsubmit = async e => {
+      e.preventDefault(); btn.disabled = true; err.textContent = "";
+      try {
+        const r = await api(mode === "login" ? "/login" : "/register",
+          { method: "POST", body: JSON.stringify({ username: u.value.trim(), password: p.value }) });
+        store.set(r.token); location.hash = "#main"; route();
+      } catch (x) { err.textContent = x.message; btn.disabled = false; }
+    };
+    const swap = el("button", { className: "link", type: "button", onclick: () => { mode = mode === "login" ? "register" : "login"; draw(); } },
+      mode === "login" ? "Create an account" : "I already have an account");
+    view.replaceChildren(el("div", { className: "card login" },
+      el("h1", {}, mode === "login" ? "Sign in" : "Create account"),
+      el("p", { className: "sub" }, "Check any email for spam and keep a report of what you find."),
+      form, el("p", {}, swap)));
+    u.focus();
+  };
+  draw();
+}
+
+function resultList(rs) {
+  const spam = rs.filter(r => r.is_spam).length;
+  return el("div", { "aria-live": "polite" },
+    el("p", { className: "sub", style: "margin-top:1rem" }, `${spam} of ${rs.length} flagged as spam. All saved to your report.`),
+    el("div", { className: "wrap" }, el("table", {}, el("tbody", {}, rs.map(r => el("tr", {},
+      el("td", {}, el("span", { className: "tag " + (r.is_spam ? "spam" : "ok") }, r.is_spam ? "Spam" : "Safe")),
+      el("td", {}, (r.subject || "(no subject)") + " from " + (r.sender || "unknown sender")),
+      el("td", {}, r.reason)))))));
+}
+
+function bulkForm() {
+  const box = el("textarea", { id: "bulk", required: true, style: "min-height:240px",
+    placeholder: "From: billing@example.com\nSubject: Verify your account\nClick here now...\n---\nFrom: friend@example.com\nSubject: Lunch?\nAre you free Friday?" });
+  const err = el("p", { className: "err", role: "alert" }), out = el("div");
+  const btn = el("button", { className: "btn", type: "submit" }, "Check all");
+  const form = el("form", {}, el("label", { htmlFor: "bulk" }, "Emails, up to 25, separated by a line with ---"), box, err, btn);
+  form.onsubmit = async e => {
+    e.preventDefault(); err.textContent = ""; out.replaceChildren(); btn.disabled = true; btn.textContent = "Checking…";
+    const emails = box.value.split(/^\s*---\s*$/m).map(b => b.trim()).filter(Boolean).map(b => {
+      const lines = b.split("\n"); let sender = "", subject = "";
+      while (lines.length && /^(from|subject):/i.test(lines[0])) {
+        const l = lines.shift(), v = l.slice(l.indexOf(":") + 1).trim();
+        if (/^from/i.test(l)) sender = v; else subject = v;
+      }
+      return { sender, subject, body: lines.join("\n").trim() || subject || "(empty)" };
+    });
+    try {
+      if (emails.length > 25) throw new Error("Check up to 25 emails at a time.");
+      out.append(resultList((await api("/analyze/bulk", { method: "POST", body: JSON.stringify({ emails }) })).results));
+    } catch (x) { err.textContent = x.message; }
+    btn.disabled = false; btn.textContent = "Check all";
+  };
+  return el("div", {}, form, out);
+}
+
+function gmailForm() {
+  const addr = el("input", { id: "ga", type: "email", autocomplete: "email", required: true });
+  const pw = el("input", { id: "gp", type: "password", autocomplete: "off", required: true });
+  const folder = el("select", { id: "gf" }, el("option", { value: "INBOX" }, "Inbox"), el("option", { value: "[Gmail]/Spam" }, "Spam folder"));
+  const count = el("select", { id: "gc" }, [10, 15, 25].map(n => el("option", { value: n }, "Latest " + n)));
+  const err = el("p", { className: "err", role: "alert" }), out = el("div");
+  const btn = el("button", { className: "btn", type: "submit" }, "Import and check");
+  const form = el("form", {},
+    el("p", { className: "sub", style: "margin-top:1rem" }, "Turn on IMAP in Gmail, then create an app password under Google Account → Security → 2-Step Verification → App passwords. It is used for this import only and is never stored."),
+    el("label", { htmlFor: "ga" }, "Gmail address"), addr,
+    el("label", { htmlFor: "gp" }, "App password"), pw,
+    el("label", { htmlFor: "gf" }, "Folder"), folder,
+    el("label", { htmlFor: "gc" }, "How many"), count, err, btn);
+  form.onsubmit = async e => {
+    e.preventDefault(); err.textContent = ""; out.replaceChildren(); btn.disabled = true; btn.textContent = "Importing…";
+    try {
+      const r = await api("/gmail/import", { method: "POST", body: JSON.stringify({ address: addr.value.trim(), app_password: pw.value, folder: folder.value, limit: +count.value }) });
+      pw.value = ""; out.append(resultList(r.results));
+    } catch (x) { err.textContent = x.message; }
+    btn.disabled = false; btn.textContent = "Import and check";
+  };
+  return el("div", {}, form, out);
+}
+
+function trendChart(t) {
+  const NS = "http://www.w3.org/2000/svg", W = 560, H = 150, bw = W / t.length;
+  const max = Math.max(1, ...t.map(d => d.spam + d.safe));
+  const s = (tag, a = {}) => { const n = document.createElementNS(NS, tag); for (const k in a) n.setAttribute(k, a[k]); return n; };
+  const svg = s("svg", { viewBox: `0 0 ${W} ${H + 20}`, width: "100%", role: "img", "aria-label": "Emails checked per day, split into spam and safe" });
+  t.forEach((d, i) => {
+    const hs = d.spam / max * H, ho = d.safe / max * H, x = i * bw + bw * .18, w = bw * .64;
+    if (d.spam) svg.append(s("rect", { x, y: H - hs, width: w, height: hs, class: "bar-spam" }));
+    if (d.safe) svg.append(s("rect", { x, y: H - hs - ho, width: w, height: ho, class: "bar-ok" }));
+    const lab = s("text", { x: x + w / 2, y: H + 14, "text-anchor": "middle", class: "axis" });
+    lab.textContent = d.day.slice(8); svg.append(lab);
+  });
+  svg.append(s("line", { x1: 0, x2: W, y1: H, y2: H, class: "base" }));
+  return svg;
+}
+
+function mainView() {
+  const tabs = { single: ["One email", singleForm], bulk: ["Bulk check", bulkForm], gmail: ["Import from Gmail", gmailForm] };
+  const body = el("div"), bar = el("div", { className: "tabs" }), btns = {};
+  const show = k => { Object.entries(btns).forEach(([n, b]) => b.classList.toggle("on", n === k)); body.replaceChildren(tabs[k][1]()); };
+  Object.entries(tabs).forEach(([k, [label]]) => { btns[k] = el("button", { className: "tab", type: "button", onclick: () => show(k) }, label); bar.append(btns[k]); });
+  $("#view").replaceChildren(el("div", { className: "card" },
+    el("h1", {}, "Check emails"),
+    el("p", { className: "sub" }, "The AI model reads each message and tells you if it is spam or phishing."), bar, body));
+  show("single");
+}
+
+function singleForm() {
+  const sender = el("input", { id: "s", placeholder: "billing@example.com" });
+  const subject = el("input", { id: "j" });
+  const body = el("textarea", { id: "b", required: true, placeholder: "Paste the email text here" });
+  const err = el("p", { className: "err", role: "alert" });
+  const out = el("div", { "aria-live": "polite" });
+  const btn = el("button", { className: "btn", type: "submit" }, "Check for spam");
+  const form = el("form", {},
+    el("label", { htmlFor: "s" }, "Sender"), sender,
+    el("label", { htmlFor: "j" }, "Subject"), subject,
+    el("label", { htmlFor: "b" }, "Message"), body, err, btn);
+  form.onsubmit = async e => {
+    e.preventDefault(); btn.disabled = true; btn.textContent = "Checking…"; err.textContent = ""; out.replaceChildren();
+    try {
+      const r = await api("/analyze", { method: "POST", body: JSON.stringify({ sender: sender.value, subject: subject.value, body: body.value }) });
+      out.append(el("div", { className: "verdict " + (r.is_spam ? "spam" : "ok") },
+        el("b", {}, (r.is_spam ? "Spam" : "Looks safe") + " · " + Math.round(r.confidence * 100) + "% confident"),
+        el("p", {}, r.reason),
+        el("p", {}, el("a", { href: "#report" }, "See it in your report"))));
+    } catch (x) { err.textContent = x.message; }
+    btn.disabled = false; btn.textContent = "Check for spam";
+  };
+  return el("div", {}, form, out);
+}
+
+async function reportView() {
+  const view = $("#view");
+  view.replaceChildren(el("p", { className: "empty" }, "Loading your report…"));
+  try {
+    const d = await api("/reports");
+    const stat = (n, l) => el("div", { className: "stat" }, el("span", {}, String(n)), el("small", {}, l));
+    const rate = d.total ? Math.round(d.spam / d.total * 100) + "%" : "0%";
+    const rows = d.items.map(r => el("tr", {},
+      el("td", {}, r.created.replace("T", " ").slice(0, 16)),
+      el("td", {}, r.sender || "Unknown"),
+      el("td", {}, r.subject || "(no subject)"),
+      el("td", {}, el("span", { className: "tag " + (r.is_spam ? "spam" : "ok") }, r.is_spam ? "Spam" : "Safe"), " " + Math.round(r.confidence * 100) + "%"),
+      el("td", {}, r.reason),
+      el("td", {}, el("button", { className: "link", onclick: async () => { await api("/reports/" + r.id, { method: "DELETE" }); reportView(); } }, "Delete"))));
+    const table = d.total
+      ? el("div", { className: "wrap" }, el("table", {},
+          el("thead", {}, el("tr", {}, ...["Checked", "Sender", "Subject", "Result", "Why", ""].map(h => el("th", {}, h)))),
+          el("tbody", {}, rows)))
+      : el("p", { className: "empty" }, "No emails checked yet. Go to Check email to scan your first one.");
+    view.replaceChildren(
+      el("h1", {}, d.username + "’s report"),
+      el("p", { className: "sub" }, "Every email you have checked, newest first."),
+      el("div", { className: "stats" }, stat(d.total, "Emails checked"), stat(d.spam, "Spam found"), stat(rate, "Spam rate")),
+      el("div", { className: "card", style: "margin-bottom:1.25rem" }, el("h2", {}, "Last 14 days"), trendChart(d.trend),
+        el("p", { className: "sub", style: "margin:.5rem 0 0" }, el("span", { className: "tag spam" }, "Spam"), " ", el("span", { className: "tag ok" }, "Safe"))),
+      el("div", { className: "card" }, table));
+  } catch (x) { view.replaceChildren(el("p", { className: "err" }, x.message)); }
+}
+
+$("#logout").onclick = () => { store.set(null); location.hash = "#login"; route(); };
+addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
