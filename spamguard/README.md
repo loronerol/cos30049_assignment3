@@ -1,9 +1,10 @@
 # SpamSentinel
 
 An explainable, moderator-centred tool for detecting spam accounts on social media
-(COS30049, Group 03). This repository holds the Stage 2 machine learning pipeline,
-which reproduces the PRISMO method (Agrawal et al. 2018). The FastAPI back end and
-React front end come next. The project management plan lives in [`Plan/`](Plan/).
+(COS30049, Group 03). The FastAPI app serves the exported Random Forest model and
+classifies social accounts from profile and behaviour features. The repository also
+contains the Stage 2 machine learning pipeline, which reproduces the PRISMO method
+(Agrawal et al. 2018). The project management plan lives in [`Plan/`](Plan/).
 
 ## Dataset: Cresci-2017 (fallback, risk R1)
 
@@ -48,6 +49,21 @@ Each step reads the previous step's outputs. Add `--quick` to the last three for
 .venv/Scripts/python ml/scripts/export_model.py      # refit, held-out test, export bundles (D3)
 .venv/Scripts/python -m pytest ml/tests              # unit tests
 ```
+
+## Running the app
+
+Install the requirements above, then start the FastAPI app from this directory:
+
+```bash
+.venv/Scripts/python -m uvicorn main:app --reload
+```
+
+Open `http://127.0.0.1:8000`, sign in, and enter the nine profile/behaviour
+features requested by the form. The API loads `models/spamsentinel_model.joblib`
+and returns a spam score plus one of `likely_genuine`, `needs_review`, or
+`likely_spam`. Values in the model's 0.35–0.65 review band are marked for manual
+review. These inputs are already-aggregated account features; the app does not
+fetch social-media profiles or calculate features from raw posts.
 
 Exploratory analysis: `ml/notebooks/eda.ipynb`.
 
