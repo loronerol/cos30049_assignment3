@@ -1,0 +1,98 @@
+[23:55:34] full feature set: macro-F1=0.9886 fitness=0.9686 (N=64)
+[23:56:23] GA gen 1/40 best=0.9802 k=29
+[23:56:44] GA gen 2/40 best=0.9802 k=29
+[23:56:52] GA gen 3/40 best=0.9807 k=20
+[23:57:08] GA gen 4/40 best=0.9811 k=26
+[23:57:29] GA gen 5/40 best=0.9812 k=21
+[23:57:42] GA gen 6/40 best=0.9821 k=22
+[23:57:51] GA gen 7/40 best=0.9821 k=22
+[23:58:00] GA gen 8/40 best=0.9838 k=22
+[23:58:09] GA gen 9/40 best=0.9838 k=22
+[23:58:17] GA gen 10/40 best=0.9838 k=22
+[23:58:26] GA gen 11/40 best=0.9838 k=22
+[23:58:34] GA gen 12/40 best=0.9841 k=19
+[23:58:42] GA gen 13/40 best=0.9841 k=19
+[23:58:50] GA gen 14/40 best=0.9841 k=19
+[23:58:59] GA gen 15/40 best=0.9847 k=20
+[23:59:07] GA gen 16/40 best=0.9847 k=17
+[23:59:15] GA gen 17/40 best=0.9852 k=17
+[23:59:23] GA gen 18/40 best=0.9855 k=16
+[23:59:30] GA gen 19/40 best=0.9855 k=16
+[23:59:38] GA gen 20/40 best=0.9858 k=16
+[23:59:48] GA gen 21/40 best=0.9865 k=14
+[00:00:01] GA gen 22/40 best=0.9865 k=14
+[00:00:12] GA gen 23/40 best=0.9868 k=11
+[00:00:29] GA gen 24/40 best=0.9868 k=11
+[00:00:58] GA gen 25/40 best=0.9868 k=11
+[00:01:20] GA gen 26/40 best=0.9868 k=11
+[00:01:38] GA gen 27/40 best=0.9868 k=11
+[00:02:04] GA gen 28/40 best=0.9868 k=11
+[00:02:23] GA gen 29/40 best=0.9868 k=11
+[00:02:38] GA gen 30/40 best=0.9871 k=11
+[00:02:48] GA gen 31/40 best=0.9871 k=11
+[00:02:55] GA gen 32/40 best=0.9871 k=11
+[00:03:05] GA gen 33/40 best=0.9874 k=9
+[00:03:14] GA gen 34/40 best=0.9874 k=9
+[00:03:25] GA gen 35/40 best=0.9874 k=9
+[00:03:36] GA gen 36/40 best=0.9874 k=9
+[00:03:47] GA gen 37/40 best=0.9874 k=10
+[00:03:58] GA gen 38/40 best=0.9875 k=11
+[00:04:08] GA gen 39/40 best=0.9875 k=11
+[00:04:18] GA gen 40/40 best=0.9886 k=9
+[00:04:45] PSO iter 1/40 best=0.9810 k=24
+[00:05:00] PSO iter 2/40 best=0.9819 k=26
+[00:05:15] PSO iter 3/40 best=0.9819 k=26
+[00:05:31] PSO iter 4/40 best=0.9821 k=24
+[00:05:46] PSO iter 5/40 best=0.9821 k=24
+[00:06:01] PSO iter 6/40 best=0.9825 k=20
+[00:06:15] PSO iter 7/40 best=0.9826 k=22
+[00:06:29] PSO iter 8/40 best=0.9826 k=22
+[00:06:42] PSO iter 9/40 best=0.9826 k=22
+[00:06:55] PSO iter 10/40 best=0.9832 k=21
+[00:07:08] PSO iter 11/40 best=0.9832 k=21
+[00:07:23] PSO iter 12/40 best=0.9832 k=21
+[00:07:37] PSO iter 13/40 best=0.9832 k=21
+[00:07:52] PSO iter 14/40 best=0.9832 k=21
+[00:08:05] PSO iter 15/40 best=0.9832 k=21
+[00:08:20] PSO iter 16/40 best=0.9832 k=21
+[00:08:34] PSO iter 17/40 best=0.9832 k=21
+[00:08:48] PSO iter 18/40 best=0.9832 k=21
+[00:09:03] PSO iter 19/40 best=0.9832 k=21
+[00:09:18] PSO iter 20/40 best=0.9832 k=21
+[00:09:33] PSO iter 21/40 best=0.9832 k=21
+[00:09:47] PSO iter 22/40 best=0.9832 k=21
+[00:10:01] PSO iter 23/40 best=0.9832 k=21
+[00:10:15] PSO iter 24/40 best=0.9832 k=20
+[00:10:29] PSO iter 25/40 best=0.9832 k=20
+[00:10:43] PSO iter 26/40 best=0.9832 k=20
+[00:10:59] PSO iter 27/40 best=0.9832 k=20
+[00:11:14] PSO iter 28/40 best=0.9832 k=20
+[00:11:29] PSO iter 29/40 best=0.9832 k=20
+[00:11:43] PSO iter 30/40 best=0.9832 k=20
+[00:11:56] PSO iter 31/40 best=0.9832 k=20
+[00:12:12] PSO iter 32/40 best=0.9832 k=20
+[00:12:26] PSO iter 33/40 best=0.9832 k=20
+[00:12:40] PSO iter 34/40 best=0.9832 k=20
+[00:12:58] PSO iter 35/40 best=0.9832 k=20
+[00:13:11] PSO iter 36/40 best=0.9832 k=20
+[00:13:27] PSO iter 37/40 best=0.9832 k=20
+[00:13:39] PSO iter 38/40 best=0.9832 k=20
+[00:13:52] PSO iter 39/40 best=0.9832 k=20
+[00:14:06] PSO iter 40/40 best=0.9832 k=20
+[00:17:40] SA step 100/1200 T=0.5987 best=0.9790 k=32
+[00:18:11] SA step 200/1200 T=0.3585 best=0.9819 k=23
+[00:18:43] SA step 300/1200 T=0.2146 best=0.9819 k=23
+[00:19:15] SA step 400/1200 T=0.1285 best=0.9819 k=23
+[00:19:47] SA step 500/1200 T=0.0769 best=0.9819 k=23
+[00:20:19] SA step 600/1200 T=0.0461 best=0.9819 k=23
+[00:20:51] SA step 700/1200 T=0.0276 best=0.9836 k=22
+[00:21:18] SA step 800/1200 T=0.0165 best=0.9836 k=22
+[00:21:48] SA step 900/1200 T=0.0099 best=0.9843 k=20
+[00:22:19] SA step 1000/1200 T=0.0059 best=0.9847 k=16
+[00:22:47] SA step 1100/1200 T=0.0035 best=0.9860 k=14
+[00:23:15] SA step 1200/1200 T=0.0021 best=0.9866 k=11
+[00:23:15] GA: k=9 macro-F1=0.9914 fitness=0.9886 evals=1200 523s
+[00:23:15] PSO: k=20 macro-F1=0.9894 fitness=0.9832 evals=1230 575s
+[00:23:15] SA: k=11 macro-F1=0.9900 fitness=0.9866 evals=1201 549s
+[00:23:16] FS4: k=9 macro-F1=0.9897 (priority 1: 3, priority 2: 6)
+[00:23:16] selection written

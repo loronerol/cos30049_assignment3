@@ -1,0 +1,83 @@
+% =====================================================================
+%  Gantt chart =====================================================================
+\begin{ganttchart}[
+    time slot format=isodate,
+    x unit=0.13cm,
+    y unit title=0.45cm,
+    y unit chart=0.4cm,
+    title height=1,
+    title/.append style={draw=brandprimary!40, fill=brandprimary!8},
+    title label font=\tiny\sffamily,
+    hgrid={draw=black!6},
+    vgrid={*6{draw=none}, {draw=black!20}},
+    bar height=0.55,
+    bar top shift=0.225,
+    bar/.append style={draw=none},
+    bar label font=\scriptsize\sffamily,
+    group/.append style={fill=brandprimary, draw=brandprimary},
+    group label font=\scriptsize\sffamily\bfseries,
+    group height=0.25,
+    group top shift=0.375,
+    group peaks height=0.15,
+    milestone/.append style={fill=brandaccent, draw=brandaccent},
+    milestone label font=\scriptsize\sffamily\itshape,
+    milestone height=0.6,
+    milestone top shift=0.2
+  ]{2026-09-14}{2026-12-13}
+  \gantttitlecalendar{month=shortname} \\
+  \gantttitle{W$-$2}{7} \gantttitle{W$-$1}{7} \gantttitle{W0}{7} \gantttitle{W1}{7} \gantttitle{W2}{7} \gantttitle{W3}{7} \gantttitle{W4}{7} \gantttitle{W5}{7} \gantttitle{W6}{7} \gantttitle{W7}{7} \gantttitle{W8}{7} \gantttitle{W9}{7} \gantttitle{W10}{7} \\
+  \ganttmilestone{A1 -- Assignment 1 due (this plan)}{2026-10-11} \\
+  \ganttmilestone{A2 -- Assignment 2 due (AI model)}{2026-11-02} \\
+  \ganttmilestone{A3 -- Assignment 3 due (web app)}{2026-12-06} \\
+  \ganttgroup{1 Project Management}{2026-09-20}{2026-12-06} \\
+  \ganttbar[bar/.append style={fill=ownerTKN}]{1.1 Project initiation \& planning}{2026-09-20}{2026-10-11} \\
+  \ganttbar[bar/.append style={fill=ownerTKN}]{1.2 Meetings \& progress reporting}{2026-09-20}{2026-12-06} \\
+  \ganttbar[bar/.append style={fill=ownerTKN}]{1.3 Risk \& change management}{2026-10-05}{2026-12-06} \\
+  \ganttmilestone{M1 Project kick-off}{2026-09-20} \\
+  \ganttgroup{2 Data Collection \& Preparation}{2026-10-05}{2026-10-21} \\
+  \ganttbar[bar/.append style={fill=ownerTKN}]{2.1 Dataset request \& acquisition}{2026-10-05}{2026-10-12} \\
+  \ganttbar[bar/.append style={fill=ownerNMV}]{2.2 Exploratory data analysis}{2026-10-13}{2026-10-18} \\
+  \ganttbar[bar/.append style={fill=ownerHDN}]{2.3 Data cleaning \& pre-processing}{2026-10-13}{2026-10-21} \\
+  \ganttbar[bar/.append style={fill=ownerTKN}]{2.4 Feature preparation}{2026-10-13}{2026-10-20} \\
+  \ganttmilestone{M5 Dataset decision}{2026-10-12} \\
+  \ganttgroup{3 Feature Subset Selection}{2026-10-12}{2026-10-27} \\
+  \ganttbar[bar/.append style={fill=ownerNKNT}]{3.1 Baseline (full feature set)}{2026-10-22}{2026-10-23} \\
+  \ganttbar[bar/.append style={fill=ownerNKNT}]{3.2 GA feature selection}{2026-10-12}{2026-10-25} \\
+  \ganttbar[bar/.append style={fill=ownerNMV}]{3.3 PSO feature selection}{2026-10-12}{2026-10-25} \\
+  \ganttbar[bar/.append style={fill=ownerTKN}]{3.4 SA feature selection}{2026-10-12}{2026-10-25} \\
+  \ganttbar[bar/.append style={fill=ownerNMV}]{3.5 Priority-based feature formation}{2026-10-26}{2026-10-27} \\
+  \ganttmilestone{M7 Feature selection complete}{2026-10-27} \\
+  \ganttgroup{4 Classification \& Evaluation}{2026-10-05}{2026-11-08} \\
+  \ganttbar[bar/.append style={fill=ownerNKNT}, bar height=0.275, bar top shift=0.225]{4.1 Classifier implementation}{2026-10-05}{2026-10-18}
+  \ganttbar[bar/.append style={fill=ownerTKN}, bar height=0.275, bar top shift=0.5]{}{2026-10-05}{2026-10-18} \\
+  \ganttbar[bar/.append style={fill=ownerNKNT}]{4.2 Cross-validation experiments}{2026-10-27}{2026-10-29} \\
+  \ganttbar[bar/.append style={fill=ownerNMV}]{4.3 Comparison \& model selection}{2026-10-29}{2026-10-30} \\
+  \ganttbar[bar/.append style={fill=ownerNKNT}]{4.4 Prediction explanations}{2026-11-02}{2026-11-08} \\
+  \ganttbar[bar/.append style={fill=ownerNKNT}]{4.5 Model export}{2026-10-30}{2026-10-31} \\
+  \ganttmilestone{M8 Final model exported}{2026-10-31} \\
+  \ganttgroup{5 Application Development}{2026-10-05}{2026-11-22} \\
+  \ganttbar[bar/.append style={fill=ownerHDN}]{5.1 System architecture design}{2026-10-05}{2026-10-09} \\
+  \ganttbar[bar/.append style={fill=ownerHDN}]{5.2 Front-end prototype}{2026-10-05}{2026-10-25} \\
+  \ganttbar[bar/.append style={fill=ownerHDN}]{5.3 Prediction API (FastAPI)}{2026-10-26}{2026-11-15} \\
+  \ganttbar[bar/.append style={fill=ownerHDN}]{5.4 Web application (React)}{2026-11-02}{2026-11-22} \\
+  \ganttbar[bar/.append style={fill=ownerNKNT}, bar height=0.275, bar top shift=0.225]{5.5 Decision support \& study mode}{2026-11-09}{2026-11-20}
+  \ganttbar[bar/.append style={fill=ownerTKN}, bar height=0.275, bar top shift=0.5]{}{2026-11-09}{2026-11-20} \\
+  \ganttbar[bar/.append style={fill=ownerNMV}, bar height=0.275, bar top shift=0.225]{5.6 Interactive visualisations}{2026-11-02}{2026-11-20}
+  \ganttbar[bar/.append style={fill=ownerTKN}, bar height=0.275, bar top shift=0.5]{}{2026-11-02}{2026-11-20} \\
+  \ganttmilestone{M6 Prototype finalised}{2026-10-25} \\
+  \ganttgroup{6 Integration, Testing \& User Evaluation}{2026-11-02}{2026-12-02} \\
+  \ganttbar[bar/.append style={fill=ownerHDN}]{6.1 System integration}{2026-11-16}{2026-11-22} \\
+  \ganttbar[bar/.append style={fill=ownerNKNT}]{6.2 Functional \& performance testing}{2026-11-16}{2026-12-02} \\
+  \ganttbar[bar/.append style={fill=ownerNMV}]{6.3 User study design \& ethics}{2026-11-02}{2026-11-20} \\
+  \ganttbar[bar/.append style={fill=ownerNMV}, bar height=0.275, bar top shift=0.225]{6.4 User study sessions \& analysis}{2026-11-23}{2026-11-30}
+  \ganttbar[bar/.append style={fill=ownerTKN}, bar height=0.275, bar top shift=0.5]{}{2026-11-23}{2026-11-30} \\
+  \ganttmilestone{M10 Core application integrated}{2026-11-22} \\
+  \ganttmilestone{M11 User study complete}{2026-11-30} \\
+  \ganttgroup{7 Closure \& Submissions}{2026-10-26}{2026-12-08} \\
+  \ganttbar[bar/.append style={fill=ownerTKN}]{7.1 Assignment 2 report \& code package}{2026-10-26}{2026-11-02} \\
+  \ganttbar[bar/.append style={fill=ownerTKN}]{7.2 Assignment 3 report}{2026-11-23}{2026-12-06} \\
+  \ganttbar[bar/.append style={fill=ownerHDN}, bar height=0.275, bar top shift=0.225]{7.3 Demonstration video}{2026-12-02}{2026-12-05}
+  \ganttbar[bar/.append style={fill=ownerTKN}, bar height=0.275, bar top shift=0.5]{}{2026-12-02}{2026-12-05} \\
+  \ganttbar[bar/.append style={fill=ownerTKN}]{7.4 Handover \& lessons learned}{2026-12-07}{2026-12-08} \\
+  \ganttmilestone{M12 Code freeze}{2026-12-02}
+\end{ganttchart}

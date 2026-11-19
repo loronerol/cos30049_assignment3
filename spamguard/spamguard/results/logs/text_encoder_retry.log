@@ -1,0 +1,21 @@
+== attempt 1 15:17:56
+[15:18:04] fold 0: loaded saved scores
+[15:18:04] fold 1: loaded saved scores
+[15:18:04] fold 2: loaded saved scores
+[15:18:04] fold 3: train 5722, score 1430
+W1019 15:18:20.203000 29192 Lib\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+W1019 15:18:23.602000 29192 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+[15:20:05]   epoch 1: train_loss=0.2793 val_loss=0.1496 val_F1m=0.9447
+[15:22:08]   epoch 2: train_loss=0.1500 val_loss=0.1411 val_F1m=0.9487
+[15:25:49]   epoch 3: train_loss=0.1188 val_loss=0.1491 val_F1m=0.9465
+[15:25:59] fold 4: train 5722, score 1430
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[15:28:42]   epoch 1: train_loss=0.2615 val_loss=0.1472 val_F1m=0.9530
+[15:29:59]   epoch 2: train_loss=0.1430 val_loss=0.1401 val_F1m=0.9511
+[15:31:16]   epoch 3: train_loss=0.1114 val_loss=0.1449 val_F1m=0.9532
+[15:31:21] final model on all training accounts
+[15:34:21]   epoch 1: train_loss=0.2580 val_loss=0.1441 val_F1m=0.9378
+[15:37:26]   epoch 2: train_loss=0.1417 val_loss=0.1323 val_F1m=0.9457
+[15:41:17]   epoch 3: train_loss=0.1207 val_loss=0.1549 val_F1m=0.9441
+[15:41:23] OOF (train) F1m=0.9452 AUC=0.9824 | TEST F1m=0.9488 AUC=0.9853 TPR=0.9797
+[15:41:23] done

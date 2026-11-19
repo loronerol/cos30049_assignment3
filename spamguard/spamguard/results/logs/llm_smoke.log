@@ -1,0 +1,30 @@
+[15:41:59] train 200 / test 50 prompts; example:
+Account profile:
+- Bio: (none or not in English)
+- Followers: 10
+- Following: 41
+- Total tweets: 83
+- Account age (days): 160
+- Tweets per day: 0.5
+- Share of tweets with a link: 0%
+- Share of retweets: 0%
+- Share of replies: 24%
+- Share posted from third-party apps: 0%
+- Share of repeated tweets: 4%
+- Default profile image: no
+Recent tweets (English only):
+1. a whore is what you are
+2. @user "If we are together nothing is impossible. If we are divided all will fail." - Winston Churchill
+3. Mike's out.. Sleeping for an early start tomorrow. Kids are sleeping.. It's only 11. I'm a bit awake and done cleaning. #sad#butits90'snight
+4. Tomorrow I'm actually going to work lol let's see how it goes
+5. @user "If your ship doesn't come in, swim out to it." - Jonathan Winters
+6. That bitch look lik
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+W1019 15:42:14.237000 34344 Lib\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+W1019 15:42:17.274000 34344 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+[15:42:54] zero-shot (base model): F1m=0.3912 AUC=0.5075 178 ms/account
+D:\SpamSentinel\.venv\Lib\site-packages\torch\_dynamo\eval_frame.py:1263: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. Starting in PyTorch 2.9, calling checkpoint without use_reentrant will raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+[15:49:18]   update 10/13 loss=0.4891 6.4 min
+[15:52:19] QLoRA: F1m=0.8140 TPR=0.8000 TNR=0.8333 AUC=0.8958 | English-only F1m=0.8303 | 1817 ms/account | train 7.9 min
+[15:52:19] done

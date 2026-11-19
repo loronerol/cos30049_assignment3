@@ -1,0 +1,74 @@
+% =====================================================================
+%  FRONT COVER
+%  All text comes from the PROJECT DETAILS block in main.tex.
+%  Optional logo: upload it as figures/swinburne-logo.png
+% =====================================================================
+\begin{titlepage}
+\begin{tikzpicture}[remember picture, overlay]
+
+  % ---------- Background bands ----------
+  \fill[brandprimary] (current page.north west) rectangle ([yshift=-11cm]current page.north east);
+  \fill[brandaccent]  ([yshift=-11cm]current page.north west) rectangle ([yshift=-11.35cm]current page.north east);
+  \fill[brandprimary] (current page.south west) rectangle ([yshift=1.8cm]current page.south east);
+
+  % ---------- Unit ----------
+  \node[anchor=north west, text=white!75!brandprimary, font=\large\sffamily]
+    at ([xshift=2.5cm, yshift=-2.5cm]current page.north west)
+    {\textbf{COS30049}\ \textbar\ \text{Computing Technology Innovation Project}};
+
+  % ---------- Document type ----------
+  \draw[brandaccent, line width=3pt]
+    ([xshift=2.5cm, yshift=-4.2cm]current page.north west) -- ++(2.2cm, 0);
+  \node[anchor=north west, text=white, font=\large\sffamily\bfseries]
+    at ([xshift=2.5cm, yshift=-4.5cm]current page.north west)
+    {\MakeUppercase{\doctype}};
+
+  % ---------- Project name & title ----------
+  \node[anchor=north west, text=white, font=\sffamily\bfseries\fontsize{44}{50}\selectfont]
+    at ([xshift=2.5cm, yshift=-5.4cm]current page.north west)
+    {\projectname};
+  \node[anchor=north west, text=white, text width=16cm, align=left, font=\sffamily\LARGE]
+    at ([xshift=2.5cm, yshift=-7.6cm]current page.north west)
+    {\projecttitle};
+
+  % ---------- Team ----------
+  \node[anchor=north west, text width=16cm, align=left, font=\sffamily]
+    at ([xshift=2.5cm, yshift=-13cm]current page.north west)
+    {%
+      {\large\bfseries\color{brandaccent} PREPARED BY}\\[0.5em]
+      {\Large\bfseries\color{brandprimary} \teamname}\\[0.8em]
+      {\color{brandprimary}%
+      \begin{tabular}{@{}l@{\hspace{1.5em}}l@{\hspace{1.5em}}l@{}}
+        \textbf{Thien Khanh Nguyen}   & 105551558  & Data Science \\
+        \textbf{Nguyen Minh Vo}   & \memberTwoID   & Data Science \\
+        \textbf{Hai Dang Nguyen} & \memberThreeID & Software Engineering \\
+        \textbf{Nguyen Khai Nghi Tran}  & \memberFourID  & Artificial Intelligence \\
+      \end{tabular}}%
+    };
+
+  % ---------- Submission ----------
+  \node[anchor=north west, text width=16cm, align=left, font=\sffamily]
+    at ([xshift=2.5cm, yshift=-19.5cm]current page.north west)
+    {%
+      {\large\bfseries\color{brandaccent} SUBMITTED TO}\\[0.5em]
+      {\color{brandprimary}Hoang Nguyen}\\[0.2em]
+      {\color{brandprimary}\submissiondate}%
+    };
+
+  % ---------- Logo (only shown if the file exists) ----------
+  \IfFileExists{figures/swinburne-logo.png}{%
+    \node[anchor=south east]
+      at ([xshift=-2.5cm, yshift=2.6cm]current page.south east)
+      {\includegraphics[height=3.5cm]{figures/swinburne-logo.png}};%
+  }{}
+
+  % ---------- Footer band ----------
+  \node[anchor=west, text=white, font=\sffamily]
+    at ([xshift=2.5cm, yshift=0.9cm]current page.south west)
+    {\institution};
+  \node[anchor=east, text=white, font=\sffamily]
+    at ([xshift=-2.5cm, yshift=0.9cm]current page.south east)
+    {Version \docversion};
+
+\end{tikzpicture}
+\end{titlepage}

@@ -1,0 +1,233 @@
+{
+  "config": {
+    "model_name": "cardiffnlp/twitter-roberta-base",
+    "fallback_model": "distilroberta-base",
+    "max_length": 256,
+    "batch_size": 16,
+    "eval_batch_size": 64,
+    "lr": 2e-05,
+    "weight_decay": 0.01,
+    "epochs": 3,
+    "warmup_ratio": 0.06,
+    "val_fraction": 0.1,
+    "fp16": true,
+    "seed": 42
+  },
+  "oof_metrics": {
+    "accuracy": 0.9516219239373602,
+    "tpr": 0.9777965743286107,
+    "tnr": 0.9005365249690467,
+    "precision": 0.9504624871531346,
+    "f1_spam": 0.9639357932040858,
+    "f1_macro": 0.9452375356678604,
+    "roc_auc": 0.9824426988592703
+  },
+  "test_metrics": {
+    "accuracy": 0.9547233091112354,
+    "tpr": 0.9797125950972105,
+    "tnr": 0.905940594059406,
+    "precision": 0.953125,
+    "f1_spam": 0.9662359316381826,
+    "f1_macro": 0.9487668207809233,
+    "roc_auc": 0.9852921894049085
+  },
+  "test_metrics_english_only": {
+    "accuracy": 0.9750479846449136,
+    "tpr": 0.975975975975976,
+    "tnr": 0.973404255319149,
+    "precision": 0.9848484848484849,
+    "f1_spam": 0.9803921568627451,
+    "f1_macro": 0.9730456826530084,
+    "roc_auc": 0.9943276609943277
+  },
+  "folds": {
+    "0": {
+      "model_name": "cardiffnlp/twitter-roberta-base",
+      "best": {
+        "epoch": 2,
+        "val_loss": 0.12217199802398682,
+        "val_f1_macro": 0.9503171723968106
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.27291116021249606,
+          "val_loss": 0.15083099901676178,
+          "val_f1_macro": 0.938729894830518
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.14356233280221498,
+          "val_loss": 0.12217199802398682,
+          "val_f1_macro": 0.9503171723968106
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.11342045898485628,
+          "val_loss": 0.12732133269309998,
+          "val_f1_macro": 0.9501782453699679
+        }
+      ],
+      "train_seconds": 231.9113187000039,
+      "n_train": 5148,
+      "n_val": 573
+    },
+    "1": {
+      "model_name": "cardiffnlp/twitter-roberta-base",
+      "best": {
+        "epoch": 1,
+        "val_loss": 0.13630418479442596,
+        "val_f1_macro": 0.9526289682539683
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.27829262530951765,
+          "val_loss": 0.13630418479442596,
+          "val_f1_macro": 0.9526289682539683
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.14006497640370952,
+          "val_loss": 0.14231696724891663,
+          "val_f1_macro": 0.950851731768823
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.11395060914273587,
+          "val_loss": 0.14383375644683838,
+          "val_f1_macro": 0.9469198703103289
+        }
+      ],
+      "train_seconds": 353.2942212000198,
+      "n_train": 5148,
+      "n_val": 573
+    },
+    "2": {
+      "model_name": "cardiffnlp/twitter-roberta-base",
+      "best": {
+        "epoch": 1,
+        "val_loss": 0.15317168831825256,
+        "val_f1_macro": 0.940129562552243
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.27990992140510806,
+          "val_loss": 0.15317168831825256,
+          "val_f1_macro": 0.940129562552243
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.14290537420220628,
+          "val_loss": 0.16197359561920166,
+          "val_f1_macro": 0.9422067646291626
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.1167095302378539,
+          "val_loss": 0.17006851732730865,
+          "val_f1_macro": 0.9442777361006918
+        }
+      ],
+      "train_seconds": 585.7115919000062,
+      "n_train": 5149,
+      "n_val": 573
+    },
+    "3": {
+      "model_name": "cardiffnlp/twitter-roberta-base",
+      "best": {
+        "epoch": 2,
+        "val_loss": 0.14114056527614594,
+        "val_f1_macro": 0.9486813822751323
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.27934742330209067,
+          "val_loss": 0.1496310830116272,
+          "val_f1_macro": 0.9447337962962963
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.149993072986973,
+          "val_loss": 0.14114056527614594,
+          "val_f1_macro": 0.9486813822751323
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.1188082477968672,
+          "val_loss": 0.14909714460372925,
+          "val_f1_macro": 0.9464902723735409
+        }
+      ],
+      "train_seconds": 441.1831192999962,
+      "n_train": 5149,
+      "n_val": 573
+    },
+    "4": {
+      "model_name": "cardiffnlp/twitter-roberta-base",
+      "best": {
+        "epoch": 2,
+        "val_loss": 0.14010025560855865,
+        "val_f1_macro": 0.9511067119477106
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.26152800765143047,
+          "val_loss": 0.14715781807899475,
+          "val_f1_macro": 0.953001968503937
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.14298638844897288,
+          "val_loss": 0.14010025560855865,
+          "val_f1_macro": 0.9511067119477106
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.11136341083401478,
+          "val_loss": 0.1448802649974823,
+          "val_f1_macro": 0.9532410303838098
+        }
+      ],
+      "train_seconds": 313.65592099999776,
+      "n_train": 5149,
+      "n_val": 573
+    }
+  },
+  "final": {
+    "model_name": "cardiffnlp/twitter-roberta-base",
+    "best": {
+      "epoch": 2,
+      "val_loss": 0.13232916593551636,
+      "val_f1_macro": 0.945677690007587
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.2580404118553876,
+        "val_loss": 0.14407455921173096,
+        "val_f1_macro": 0.9377595303211657
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.14168112042819891,
+        "val_loss": 0.13232916593551636,
+        "val_f1_macro": 0.945677690007587
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.12073663243141126,
+        "val_loss": 0.15494221448898315,
+        "val_f1_macro": 0.9441431682369434
+      }
+    ],
+    "train_seconds": 593.5686291999882,
+    "n_train": 6436,
+    "n_val": 716
+  },
+  "n_train": 7152,
+  "n_test": 1789
+}

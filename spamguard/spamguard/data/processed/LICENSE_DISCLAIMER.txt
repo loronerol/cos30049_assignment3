@@ -1,0 +1,14 @@
+Derived from the Cresci-2017 and Cresci-2015 datasets ("The Fake Project"),
+released by the Institute of Informatics and Telematics of the Italian National
+Research Council (CNR), http://mib.projects.iit.cnr.it
+
+Cresci et al. (2017) The paradigm-shift of social spambots: Evidence, theories and
+tools for the arms race. WWW '17 Companion, 963-972.
+Cresci et al. (2015) Fame for sale: efficient detection of fake Twitter followers.
+Decision Support Systems, 80, 56-71.
+
+LIABILITY DISCLAIMER (from the original archive)
+The information included in the files stored in this archive are released FOR
+RESEARCH PURPOSES ONLY. Any improper use or abuse of the released data can be
+prosecuted in accordance with the laws in force. Any redistribution without this
+disclaimer can be considered for prosecution in accordance with the laws in force.

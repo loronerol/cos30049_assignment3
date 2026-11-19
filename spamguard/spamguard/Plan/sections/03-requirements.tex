@@ -1,0 +1,194 @@
+% =====================================================================
+%  3. PROJECT REQUIREMENTS
+% =====================================================================
+\section{Project Requirements}\label{sec:requirements}
+
+% MoSCoW priority labels used in the requirement tables
+\newcommand{\must}{\textcolor{brandaccent}{\textbf{Must}}}
+\newcommand{\should}{\textcolor{brandprimary}{\textbf{Should}}}
+\newcommand{\could}{\textcolor{brandmuted}{\textbf{Could}}}
+\newcommand{\reqgroup}[1]{\multicolumn{4}{@{}l}{\cellcolor{brandprimary!8}\textbf{\sffamily #1}} \\}
+
+This section identifies the project's stakeholders and lists the functional and non-functional requirements that \projectname{} must satisfy. Requirements are derived from the objectives in Section~\ref{sec:objectives} and from the methodology of the PRISMO spam detection model \parencite{agrawal2018prismo}, which this project adopts as its primary methodological reference.
+
+\subsection{Stakeholders}\label{sec:stakeholders}
+
+Table~\ref{tab:stakeholders} lists the stakeholders who will use, assess or be affected by \projectname{}, along with their key needs.
+
+\begin{table}[htbp]
+\centering
+\caption{Project stakeholders and their key needs}
+\label{tab:stakeholders}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.25\textwidth} >{\raggedright\arraybackslash}p{0.2\textwidth} X@{}}
+  \toprule
+  \textbf{Stakeholder} & \textbf{Type} & \textbf{Key Needs} \\
+  \midrule
+  Unit tutor (\supervisor) & Assessor and client & A well-planned project delivered on time that meets the unit's learning outcomes and assessment criteria. \\
+  \addlinespace
+  Platform moderators and trust \& safety analysts & Primary end users & Fast, accurate identification of suspicious accounts, with clear reasons they can rely on when deciding what action to take. \\
+  \addlinespace
+  Researchers and data analysts & Secondary end users & Access to model performance, feature selection results and global feature importance to understand how spam accounts behave. \\
+  \addlinespace
+  Social media users & Indirect beneficiaries & Fewer encounters with spam, scams and misleading content. \\
+  \addlinespace
+  User study participants & Evaluators & Clear instructions, informed consent, anonymity, and a session of reasonable length. \\
+  \addlinespace
+  Project team & Developers & Clear, stable and testable requirements; achievable scope within the semester. \\
+  \bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Methodological Basis: the PRISMO Model}\label{sec:prismo}
+
+\textcite{agrawal2018prismo} proposed PRISMO (\emph{PRIority based Spam detection using Multi Optimization}), a spam detection approach organised into three phases: \emph{data collection}, \emph{feature subset selection} and \emph{classification}. Its key idea is that many features in spam datasets are irrelevant or redundant, which lowers classifier accuracy and increases training time. PRISMO therefore uses a two-layer hybrid feature selection process:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Layer 1 (feature selection):} three metaheuristic optimisation algorithms -- a Genetic Algorithm (GA), Particle Swarm Optimisation (PSO) and Simulated Annealing (SA) -- each independently select a feature subset (FS1, FS2 and FS3).
+  \item \textbf{Layer 2 (feature formation):} features selected by all three algorithms are given \emph{priority~1}, features selected by any two are given \emph{priority~2}, and the union of these forms the final subset (FS4). Features selected by only one algorithm are discarded.
+\end{enumerate}
+
+Each subset, along with the full feature set as a baseline, was then evaluated with four classifiers (Random Forest, Na\"ive Bayes, JRip and J48) using 10-fold cross-validation. On a labelled Twitter spammer dataset with 62 content and user-behaviour features \parencite{benevenuto2010detecting}, PRISMO reduced the feature set to 19 features while achieving 88.26\% accuracy, a true positive rate (TPR) of 72.4\% and a true negative rate (TNR) of 96.2\% with Random Forest, which was the best-performing classifier across all subsets. Feature reduction also halved model build time, from 1,240\,ms to 620\,ms \parencite{agrawal2018prismo}.
+
+\paragraph{Replication approach.} The team will reproduce PRISMO's \emph{method} rather than attempt to match its exact numbers, for three reasons. First, the paper does not report the parameters of its optimisation algorithms (such as population size, mutation and crossover rates, number of particles, iterations or the annealing schedule), nor the fitness function used to score candidate feature subsets. Second, the description of how the best features from Layer~1 are carried into Layer~2 can be interpreted in more than one way. Third, GA, PSO and SA are stochastic, so results vary between runs even with identical settings. The team will therefore document every parameter and interpretation it adopts (NFR9) and compare its results against the ranges reported in the paper. The feature subsets PRISMO selected, which the paper lists in full, provide an additional check on the implementation.
+
+It is also worth noting that, in PRISMO's own results, the differences in accuracy between feature sets are small: with Random Forest, the full feature set achieved 88.16\%, PRISMO 88.26\% and GA alone 88.73\% \parencite{agrawal2018prismo}. PRISMO's main benefit is therefore that it cuts the number of features by roughly two-thirds and halves model build time \emph{without losing accuracy}, rather than that it increases accuracy. This project will test whether the same holds in its own experiments.
+
+\projectname{} follows PRISMO's three-phase methodology and extends it to address its limitations and this project's objectives, as summarised in Table~\ref{tab:prismo-alignment}.
+
+% Not a floating table, so that it keeps its number before the long requirement tables that follow
+\begin{center}
+\captionof{table}{How \projectname{} adopts and extends the PRISMO methodology}
+\label{tab:prismo-alignment}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.17\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.11\textwidth}@{}}
+  \toprule
+  \textbf{Phase} & \textbf{PRISMO \parencite{agrawal2018prismo}} & \textbf{\projectname{}} & \textbf{Req.} \\
+  \midrule
+  Data collection & Labelled Twitter spammer dataset with 62 content and user-behaviour features & Same dataset where access is granted, with an alternative public dataset as a fallback & FR1--FR3 \\
+  \addlinespace
+  Feature subset selection & GA, PSO and SA (Layer 1) combined by priority rules (Layer 2), implemented in MATLAB & Same two-layer process re-implemented in Python, with fixed random seeds and documented parameters for reproducibility & FR4--FR6, NFR9 \\
+  \addlinespace
+  Classification & Random Forest, Na\"ive Bayes, JRip and J48 in WEKA, 10-fold cross-validation & Equivalent classifiers in Python, plus an optional gradient-boosting model; 10-fold cross-validation \emph{and} a held-out test set & FR7--FR8 \\
+  \addlinespace
+  Evaluation & Accuracy, TPR, TNR and model build time & Adds precision, F1-score and ROC-AUC, with a focus on improving spammer detection (TPR) & FR9, NFR1 \\
+  \addlinespace
+  \emph{Extension} & Not addressed; evaluation is limited to model metrics & Moderator-centred decision support (plain-language explanations, review zone, batch triage, reduced input form), evaluated through a user study & FR11--FR23, NFR12 \\
+  \bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Functional Requirements}\label{sec:functional-req}
+
+Requirements are prioritised using the MoSCoW method: \must{} (essential for the project to succeed), \should{} (important but not essential), and \could{} (desirable if time permits). Together, the \must{} requirements form the project's \textbf{core scope}, which reproduces the PRISMO pipeline end to end and makes it usable through the web application. The \should{} and \could{} requirements form the \textbf{stretch scope}, which is delivered only once the core is complete and stable. Items the team has explicitly decided not to deliver are recorded as out of scope in Section~\ref{sec:scope}.
+
+{\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.07\textwidth} >{\raggedright\arraybackslash}p{0.21\textwidth} >{\raggedright\arraybackslash}p{0.52\textwidth} >{\raggedright\arraybackslash}p{0.09\textwidth}@{}}
+  \caption{Functional requirements}\label{tab:functional-req} \\
+  \toprule
+  \textbf{ID} & \textbf{Requirement} & \textbf{Description} & \textbf{Priority} \\
+  \midrule
+  \endfirsthead
+  \multicolumn{4}{@{}l}{\small\itshape Table~\thetable{} continued} \\
+  \toprule
+  \textbf{ID} & \textbf{Requirement} & \textbf{Description} & \textbf{Priority} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endlastfoot
+
+  \reqgroup{Phase 1 -- Data Collection and Preparation}
+  FR1 & Dataset acquisition & Obtain at least one labelled dataset of real social media accounts. The Twitter spammer dataset used by PRISMO \parencite{benevenuto2010detecting} is preferred and was requested from its authors on Monday 5 October. If access has not been granted within one week (by Monday 12 October), the team will switch to Cresci-2017 \parencite{cresci2017paradigm} or TwiBot-20 \parencite{feng2021twibot20}. & \must \\
+  FR2 & Data pre-processing & Clean the data (missing values, duplicates, invalid records), scale numerical features, assess class imbalance, and create stratified training and test splits. & \must \\
+  FR3 & Feature preparation & Map the dataset's features into the content-based, user-behaviour and profile categories in Table~\ref{tab:feature-categories}. The PRISMO dataset already provides its 62 features. If a fallback dataset is used, compute equivalent features from the raw account and tweet data following the definitions of \textcite{benevenuto2010detecting}. & \must \\
+
+  \reqgroup{Phase 2 -- Feature Subset Selection}
+  FR4 & Baseline feature set & Train and evaluate all classifiers on the full feature set, without selection, as the comparison baseline. & \must \\
+  FR5 & Metaheuristic feature selection & Implement GA, PSO and SA feature selection to produce subsets FS1, FS2 and FS3 (PRISMO Layer 1). & \must \\
+  FR6 & Priority-based feature formation & Combine FS1--FS3 into FS4 using PRISMO's priority rules: keep features selected by all three (priority~1) or any two (priority~2) algorithms, and discard the rest (PRISMO Layer 2). & \must \\
+
+  \reqgroup{Phase 3 -- Classification and Evaluation}
+  FR7 & Multi-classifier training & Train Random Forest, Na\"ive Bayes, a rule-based learner (RIPPER, equivalent to JRip) and a decision tree (equivalent to J48) on each feature set. A gradient-boosting model may be added for comparison. & \must \\
+  FR8 & Model validation & Validate every feature-set and classifier combination using stratified 10-fold cross-validation, and confirm the final model on the held-out test set. & \must \\
+  FR9 & Performance comparison & Report accuracy, TPR (recall), TNR (specificity), precision, F1-score, ROC-AUC and model build time for every combination, in comparison tables and charts. & \must \\
+  FR10 & Model export & Save the selected model and its pre-processing and feature-selection pipeline so that the back end can load it. & \must \\
+
+  \reqgroup{Explainability and Decision Support}
+  FR11 & Per-prediction explanation & For each prediction, compute the features that contributed most to the result (e.g.\ using SHAP values \parencite{lundberg2017unified}). & \must \\
+  FR12 & Plain-language explanations & Present the top contributing features as short, plain-language statements that compare the account's value with typical values for genuine and spam accounts in the training data. & \must \\
+  FR13 & Uncertainty review zone & Label predictions whose confidence falls within a defined band around the decision threshold as \emph{uncertain -- review recommended}, rather than as genuine or spam. & \must \\
+  FR14 & Global feature insights & Show overall feature importance and which features each selection algorithm chose. & \should \\
+
+  \reqgroup{Web Application}
+  FR15 & Single account check & Allow a user to enter the values of the \emph{selected} features only (FS4, rather than all 62), or choose a sample account from the dataset, and receive a label with a confidence score and explanation. & \must \\
+  FR16 & Batch triage queue & Allow a user to upload a CSV file of accounts and view the predictions as a queue sorted by risk, with uncertain cases highlighted, filtering options, and export of results and the user's decisions. & \must \\
+  FR17 & Prediction API & Provide FastAPI back-end endpoints, using at least the GET and POST methods, for single prediction, batch prediction, explanations, model metrics and feature information. & \must \\
+  FR18 & Input validation and error handling & Validate user input in the React front end before it is sent, and again in the back end. Handle all errors gracefully, with clear, specific messages explaining how to fix problems. & \must \\
+  FR19 & Interactive visualisations & Present results through at least three types of interactive chart (e.g.\ a per-prediction explanation chart, the risk distribution of a batch, and model and feature-set comparisons from FR9), supporting hover details, zooming or filtering, and export as images. & \must \\
+  FR20 & Help and about page & Explain how \projectname{} works, what the confidence score and review zone mean, and the model's limitations. & \could \\
+  FR21 & Moderator feedback & Allow a user to mark that they disagree with a prediction, and include these disagreements in the exported results for future retraining. & \could \\
+
+  \reqgroup{User Evaluation}
+  FR22 & Study mode & Provide a study configuration in which explanations can be switched on or off, and the reduced (FS4) or full (62-feature) input form can be selected, so that conditions can be compared. & \must \\
+  FR23 & Interaction logging & In study mode, anonymously record each participant's decisions, task completion times and input errors, and export them as CSV for analysis. & \must \\
+\end{longtable}
+}
+
+\subsection{Non-Functional Requirements}\label{sec:nonfunctional-req}
+
+{\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.07\textwidth} >{\raggedright\arraybackslash}p{0.21\textwidth} >{\raggedright\arraybackslash}p{0.52\textwidth} >{\raggedright\arraybackslash}p{0.09\textwidth}@{}}
+  \caption{Non-functional requirements}\label{tab:nonfunctional-req} \\
+  \toprule
+  \textbf{ID} & \textbf{Requirement} & \textbf{Description} & \textbf{Priority} \\
+  \midrule
+  \endfirsthead
+  \multicolumn{4}{@{}l}{\small\itshape Table~\thetable{} continued} \\
+  \toprule
+  \textbf{ID} & \textbf{Requirement} & \textbf{Description} & \textbf{Priority} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endlastfoot
+
+  NFR1 & Detection performance & The selected model must achieve a macro-averaged F1-score of at least 0.85 on the held-out test set (Objective O4). Its spammer detection rate (TPR) should exceed PRISMO's 72.4\%, because a missed spam account is more harmful than a false alarm. & \must \\
+  NFR2 & Efficiency & Feature selection must reduce model build time compared with the full feature set, as demonstrated by PRISMO. & \should \\
+  NFR3 & Response time & A single prediction must be returned within 2 seconds, and a batch of 1,000 accounts within 30 seconds, on a standard laptop. & \must \\
+  NFR4 & Usability & The interface must follow recognised usability heuristics \parencite{nielsen1994heuristics}. A first-time user should be able to complete a single account check within one minute without instructions, and the application should score at least 68 on the System Usability Scale \parencite{brooke1996sus} in user testing. & \must \\
+  NFR5 & Transparency & Every prediction must be shown with its confidence score and its top contributing features in plain language. & \must \\
+  NFR6 & Accessibility & The interface should meet WCAG 2.1 Level AA colour-contrast and keyboard-navigation guidelines \parencite{w3c2018wcag21}. & \should \\
+  NFR7 & Compatibility and responsiveness & The application must work on current versions of Chrome, Firefox and Edge, with a responsive layout for desktop, tablet and mobile screen sizes. & \must \\
+  NFR8 & Security & Uploaded files must be checked for type (CSV only) and size (maximum 5\,MB), parsed as data only, and never executed. & \must \\
+  NFR9 & Reproducibility & Because GA, PSO and SA are stochastic and sensitive to their parameters \parencite{agrawal2018prismo}, all experiments must use fixed random seeds and record their parameters (e.g.\ population size, mutation and crossover rates, number of particles). Any interpretation of steps the paper does not fully specify must be documented. & \must \\
+  NFR10 & Privacy and ethics & Only publicly available research datasets may be used, in line with their terms of use. Uploaded data must be processed in memory and not stored after the session. & \must \\
+  NFR11 & Maintainability & Code must be modular, version-controlled on GitHub, peer-reviewed before merging, and documented with a README covering set-up and usage. & \must \\
+  NFR12 & Research ethics & The user study must follow Swinburne's requirements for research involving people, including obtaining any required approval before sessions begin. Participation must be voluntary and based on informed consent, participants may withdraw at any time, and all study data must be anonymous. & \must \\
+\end{longtable}
+}
+
+\subsection{Requirements Traceability}\label{sec:traceability}
+
+Table~\ref{tab:traceability} maps each project objective and research question to the requirements that deliver it, so that every objective is covered and every requirement has a clear purpose.
+
+\begin{table}[htbp]
+\centering
+\caption{Traceability between objectives, research questions and requirements}
+\label{tab:traceability}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.38\textwidth} X@{}}
+  \toprule
+  \textbf{Objective / Research Question} & \textbf{Requirements} \\
+  \midrule
+  O1 -- Data acquisition and preparation & FR1, FR2, NFR10 \\
+  O2 -- Feature engineering and selection & FR3, FR4, FR5, FR6, NFR9 \\
+  O3 -- Model development                & FR7, FR10, NFR2 \\
+  O4 -- Evaluation                       & FR8, FR9, NFR1 \\
+  O5 -- Explainability and decision support & FR11--FR14, NFR5 \\
+  O6 -- Web application                  & FR15--FR21, NFR3, NFR4, NFR6, NFR7, NFR8 \\
+  O7 -- User evaluation                  & FR22, FR23, NFR4, NFR12 \\
+  O8 -- Project management               & NFR11; Sections~\ref{sec:scope}--\ref{sec:closure} \\
+  \midrule
+  RQ1 -- Reproducing PRISMO              & FR4--FR9, NFR1, NFR9 \\
+  RQ2 -- Effect of feature selection on use & FR15, FR22, FR23 \\
+  RQ3, RQ4 -- Effect of explanations     & FR11--FR13, FR22, FR23 \\
+  RQ5 -- Usability and trust             & NFR4, FR23 \\
+  \bottomrule
+\end{tabularx}
+\end{table}

@@ -1,0 +1,34 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Raw datasets (academic-use licence; download with ml/scripts/download_data.py)
+data/raw/
+data/interim/
+
+# LLM extension artefacts (large)
+models/text_encoder/
+models/llm_lora/
+models/llm_lora_checkpoint/
+
+# Node
+node_modules/
+dist/
+
+# LaTeX build files
+Plan/*.aux
+Plan/*.log
+Plan/*.out
+Plan/*.toc
+Plan/*.bbl
+Plan/*.bcf
+Plan/*.blg
+Plan/*.run.xml
+Plan/*.lof
+Plan/*.lot
+Plan/*.fls
+Plan/*.fdb_latexmk
+Plan/*.synctex.gz

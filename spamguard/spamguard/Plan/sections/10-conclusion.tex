@@ -1,0 +1,20 @@
+% =====================================================================
+%  10. CONCLUSION
+% =====================================================================
+\section{Conclusion}\label{sec:conclusion}
+
+Spam accounts remain a persistent cybersecurity problem on social media. They spread scams, malicious links and misleading content, and they increasingly imitate genuine users to avoid detection. This plan sets out how \teamname{} will deliver \projectname{}, an explainable, moderator-centred tool for detecting spam accounts, within the \unitcode{} timeframe.
+
+The project combines a proven method with a distinct contribution. Technically, it reproduces the PRISMO approach \parencite{agrawal2018prismo}: two-layer feature selection using GA, PSO and SA, followed by a comparison of four classifiers on labelled data from real accounts. It reports honestly where its results agree with, or differ from, the original paper. Beyond reproduction, the project treats spam detection as a human decision. It delivers predictions through a React and FastAPI web application with a reduced input form, plain-language explanations, an uncertainty review zone and batch triage. A user study then tests whether these features help moderators decide faster and more accurately, and whether they help moderators recognise when the model is wrong (RQ1--RQ5).
+
+The plan provides the structure needed to achieve this:
+
+\begin{itemize}[nosep]
+  \item \textbf{Scope:} 23 functional and 12 non-functional requirements, divided into core and stretch scope and traced to the project's objectives and research questions, are broken down into 31 work packages totalling 386 planned hours, within a capacity of about 456 hours.
+  \item \textbf{Time:} the schedule is built around the three assessment deadlines (11 October, 2 November and 6 December 2026), with parallel work from the first week, a one-week dataset decision point and a code freeze before final submission.
+  \item \textbf{Risk:} 16 risks have been identified, assessed and assigned owners, and each of the five High risks, including dataset access, ethics approval and the tight Assignment~2 timeline, has a defined trigger and contingency plan.
+  \item \textbf{Control and closure:} weekly monitoring using earned value indicators, a formal change control process and measurable acceptance criteria for every deliverable make progress visible and define clearly when the project is complete.
+  \item \textbf{Design:} the desktop and mobile front-end prototypes demonstrate the intended moderator workflow and apply Nielsen's usability heuristics \parencite{nielsen1994heuristics} throughout.
+\end{itemize}
+
+The immediate priorities are to confirm access to the PRISMO dataset by the decision point on 12 October (M5), to confirm the ethics requirements for the user study with the tutor (M3), and to begin implementing the feature selection algorithms in parallel. With these foundations in place, the team is well positioned to deliver a working, well-evaluated tool that both advances the reproduction of published spam detection research and shows how such research can be made genuinely useful to the people who protect online communities.

@@ -1,0 +1,4 @@
+[00:25:18] TEST RandomForest FS4 (k=9): F1m=0.9882 TPR=0.9882 TNR=0.9917 AUC=0.9954 | Full: F1m=0.9863
+[00:25:18] review band (0.35, 0.65): 0.9% of test accounts; caught 2/19 errors
+[00:25:19] reloaded bundle scored 1,000 accounts in 0.01s (NFR3 budget 30s); labels: {'likely_spam': 653, 'likely_genuine': 341, 'needs_review': 6}
+[00:25:19] exported spamsentinel_model.joblib and spamsentinel_model_full.joblib

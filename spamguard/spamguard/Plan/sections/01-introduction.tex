@@ -1,0 +1,165 @@
+% =====================================================================
+%  1. PROJECT BACKGROUND AND INTRODUCTION
+% =====================================================================
+\section{Project Background and Introduction}\label{sec:introduction}
+
+\subsection{Project Background}\label{sec:background}
+
+Social media has become one of the primary channels through which people communicate, consume news and conduct business. As of October 2025 there were an estimated 5.66~billion social media user identities worldwide, equivalent to 68.7\% of the global population \parencite{kemp2025digital2026}. Importantly, the same report cautions that these figures may include duplicate and \enquote{false} accounts, which highlights that not every account on a platform represents a genuine person.
+
+A significant share of these non-genuine accounts are \emph{spam accounts}: fake, automated or semi-automated profiles (often called social bots) that are created to deceive or exploit other users \parencite{ferrara2016rise}. Their prevalence is substantial; \textcite{varol2017online} estimated that between 9\% and 15\% of active Twitter accounts were bots. Spam accounts are used to:
+
+\begin{itemize}[nosep]
+  \item distribute unsolicited advertising, phishing links and malicious URLs;
+  \item impersonate trusted people or organisations to run financial, romance and investment scams;
+  \item artificially inflate follower counts, likes and engagement; and
+  \item amplify misleading or low-credibility content so that it appears more popular and credible than it is.
+\end{itemize}
+
+The last point is especially concerning. \textcite{shao2018spread} found that social bots played a disproportionate role in spreading articles from low-credibility sources, and that they amplified such content in the early moments of its spread, before it went viral. Spam accounts therefore sit at the intersection of two major cybersecurity challenges: \emph{spam and malicious content delivery}, and \emph{misinformation}.
+
+The harm is also financial and local. In Australia, Scamwatch received 7,724 reports of social media scams that led to financial loss in 2024, with combined losses of \$69.5~million \parencite{nasc2025scamlosses}. Many of these scams begin with a fake or compromised account making first contact with a victim. Detecting such accounts early, before they reach users, is therefore an important part of improving online safety.
+
+\subsection{Problem Statement}\label{sec:problem}
+
+Detecting spam accounts is difficult and is becoming more so. Early spam accounts were relatively easy to identify through simple rules, such as abnormally high posting rates, empty profiles or repetitive content. However, spammers continually adapt. \textcite{cresci2017paradigm} documented a \enquote{paradigm shift} towards a new generation of social spambots that closely imitate the behaviour of real users, and found that neither platform moderation, human annotators nor the detection techniques available at the time could reliably distinguish them from genuine accounts. More recently, large language models (LLMs) have made it easier still to generate human-like posts and profile descriptions; \textcite{feng2024botsay} showed that LLMs can be used to manipulate account information so that bots evade existing detectors, while also demonstrating that LLMs can strengthen detection when used carefully.
+
+This creates three practical problems:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Scale.} The volume of accounts and posts is far too large for manual review by moderators alone.
+  \item \textbf{Adaptability.} Fixed, hand-written rules are brittle; spammers learn the thresholds and work around them.
+  \item \textbf{Transparency.} Many detection approaches output only a score or label. Moderators and users who must act on a prediction need to understand \emph{why} an account has been flagged in order to trust it and to make fair decisions.
+\end{enumerate}
+
+Machine learning (ML) offers a way to address the first two problems by learning patterns from many signals at once, rather than relying on a few fixed rules. Tools such as Botometer have demonstrated the value of making ML-based bot detection available to the public \parencite{yang2019arming}. The third problem, however, requires the model to be paired with an interface that presents predictions and their reasons in a clear and usable way.
+
+This is also where a gap exists in the research. Spam detection studies, including the PRISMO model this project builds on \parencite{agrawal2018prismo}, typically evaluate their models only through metrics such as accuracy and detection rate. Whether the people who must act on those predictions can understand them, use them efficiently, and recognise when the model is wrong is rarely examined, even though this determines whether a detector is useful in practice.
+
+This project addresses the following problem:
+
+\begin{center}
+\fcolorbox{brandprimary}{brandprimary!5}{%
+\begin{minipage}{0.9\textwidth}
+\vspace{0.4em}
+\textit{How can machine learning be used to accurately identify spam accounts on social media platforms from their profile, behavioural and content characteristics, and how can these predictions be presented so that non-technical users can understand and act on them?}
+\vspace{0.4em}
+\end{minipage}}
+\end{center}
+
+\subsection{Project Aim and Objectives}\label{sec:objectives}
+
+\paragraph{Aim.} To design, develop and evaluate \textbf{\projectname}, an explainable, moderator-centred decision-support tool that reproduces the PRISMO method to classify social media accounts as \emph{genuine} or \emph{spam}, explains each prediction in plain language, and helps moderators prioritise and review accounts with confidence.
+
+\paragraph{Objectives.} To achieve this aim, the team will:
+
+\begin{enumerate}[label=\textbf{O\arabic*}, leftmargin=2.5em, itemsep=0.3em]
+  \item \textbf{Data acquisition and preparation} -- obtain at least one publicly available, labelled dataset of real social media accounts, then clean and pre-process it and split it into stratified training and test sets.
+  \item \textbf{Feature engineering and selection} -- organise account features into content-based, user-behaviour and profile categories (Table~\ref{tab:feature-categories}), then reproduce the PRISMO two-layer feature subset selection method \parencite{agrawal2018prismo} to identify the most relevant subset of features.
+  \item \textbf{Model development} -- train and compare the four classifiers used by PRISMO (Random Forest, Na\"ive Bayes, a rule-based learner and a decision tree) on the full and reduced feature sets, and select the best-performing model.
+  \item \textbf{Evaluation} -- evaluate models using accuracy, true positive rate, true negative rate, precision, F1-score and ROC-AUC, targeting a macro-averaged F1-score of at least 0.85 and a spammer detection rate above PRISMO's reported 72.4\%.
+  \item \textbf{Explainability and decision support} -- translate each prediction's main contributing features into plain-language explanations that compare the account with typical genuine and spam accounts, and flag uncertain predictions for human review.
+  \item \textbf{Web application} -- develop a full-stack web application (React.js front end and FastAPI back end) that lets moderators check a single account using only the selected features, triage a batch of accounts by risk, and explore results through interactive visualisations.
+  \item \textbf{User evaluation} -- conduct a user study to measure how the tool affects efficiency, decision accuracy, reliance on the model and usability.
+  \item \textbf{Project management} -- deliver the project on schedule and within scope, following the processes defined in this plan.
+\end{enumerate}
+
+\subsection{Research Questions}\label{sec:rqs}
+
+The project's unique contribution is to treat spam detection as a \emph{human decision} rather than only a classification task. PRISMO serves as the detection engine; the project then studies how its predictions can best be delivered to the moderators who must act on them. Table~\ref{tab:rqs} lists the research questions the project will answer.
+
+\begin{table}[htbp]
+\centering
+\caption{Research questions and how they will be answered}
+\label{tab:rqs}
+\begin{tabularx}{\textwidth}{@{}l >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.36\textwidth}@{}}
+  \toprule
+  \textbf{ID} & \textbf{Research Question} & \textbf{How it is answered} \\
+  \midrule
+  RQ1 & Can PRISMO's method be reproduced, achieving comparable detection performance with around two-thirds fewer features? & Model metrics compared with the ranges reported by \textcite{agrawal2018prismo} \\
+  \addlinespace
+  RQ2 & Does feature selection make the tool faster and less error-prone to use, without reducing detection performance? & Task time and input errors with the reduced versus full input form; performance difference between reduced and full models \\
+  \addlinespace
+  RQ3 & Do plain-language explanations help users make more accurate decisions than a label and confidence score alone? & Decision accuracy, time and self-reported confidence with and without explanations \\
+  \addlinespace
+  RQ4 & Do explanations help users recognise when the model is wrong, or do they increase over-reliance on it? & Rate at which users correctly override deliberately included incorrect predictions \\
+  \addlinespace
+  RQ5 & How usable and trustworthy do moderators find the tool? & System Usability Scale score \parencite{brooke1996sus}, a trust questionnaire and open feedback \\
+  \bottomrule
+\end{tabularx}
+\end{table}
+
+RQ1 is answered through the technical experiments (Objectives O2--O4), while RQ2--RQ5 are answered through the user study (Objective O7).
+
+\subsection{Proposed Solution}\label{sec:solution}
+
+\projectname{} follows the three-phase methodology of PRISMO \parencite{agrawal2018prismo} (data collection, feature subset selection and classification) and extends it into an explainable, moderator-centred decision-support tool that is evaluated with users (Figure~\ref{fig:solution-overview}).
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    node distance=0.5cm,
+    box/.style={draw=brandprimary, fill=brandprimary!6, rounded corners=3pt,
+                align=center, font=\footnotesize\sffamily, minimum height=1.6cm, text width=2.4cm},
+    arrow/.style={-{Stealth[length=2.5mm]}, thick, brandaccent},
+    team/.style={font=\scriptsize\sffamily, text=brandmuted}
+]
+  \node[box] (data)  {Labelled dataset \& pre-processing};
+  \node[box, right=of data]  (prep)  {Feature subset selection (GA, PSO, SA)};
+  \node[box, right=of prep]  (model) {Classification \& evaluation};
+  \node[box, right=of model] (api)   {Prediction API (back end)};
+  \node[box, right=of api]   (ui)    {Moderator decision-support app};
+
+  \draw[arrow] (data) -- (prep);
+  \draw[arrow] (prep) -- (model);
+  \draw[arrow] (model) -- (api);
+  \draw[arrow] (api) -- (ui);
+
+  \node[team, below=0.2cm of data]  {Data Science};
+  \node[team, below=0.2cm of prep]  {Data Science};
+  \node[team, below=0.2cm of model] {Artificial Intelligence};
+  \node[team, below=0.2cm of api]   {Software Eng.};
+  \node[team, below=0.2cm of ui]    {Software Eng.};
+\end{tikzpicture}
+\caption{High-level overview of the proposed \projectname{} solution, based on the PRISMO methodology, and the discipline leading each stage}
+\label{fig:solution-overview}
+\end{figure}
+
+\paragraph{Data.} Collecting live data directly from platforms is increasingly restricted by API access limits and terms of service, and newly collected data would have no reliable ground-truth labels. The project will therefore use publicly available research datasets of \emph{real} social media accounts that have already been labelled as genuine or spam. The preferred dataset is the labelled Twitter spammer dataset used by PRISMO \parencite{benevenuto2010detecting}, which allows the project's results to be compared directly with the paper's. Because this dataset is released on request, the Cresci-2017 social spambot dataset \parencite{cresci2017paradigm} and the TwiBot-20 benchmark \parencite{feng2021twibot20} are kept as fallbacks. Final dataset selection is part of the project scope (Section~\ref{sec:scope}).
+
+\paragraph{Features.} Rather than judging an account on a single post, \projectname{} classifies the \emph{account as a whole} using the categories of signal summarised in Table~\ref{tab:feature-categories}. This account-level approach brings together content analysis (as used in misinformation detection) and pattern-based classification (as used in spam detection).
+
+\begin{table}[htbp]
+\centering
+\caption{Feature categories used to characterise each account}
+\label{tab:feature-categories}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}p{0.2\textwidth} X X@{}}
+  \toprule
+  Category & \textbf{What it captures} & \textbf{Example features} \\
+  \midrule
+  Content-based & What the account posts & Hashtags, URLs and mentions per tweet; fraction of tweets containing URLs; character and word counts; retweet statistics \\
+  User behaviour & How the account acts and is connected over time & Number of followers and followees, follower-to-followee ratio, total tweets, tweets per day and per week, account age \\
+  Profile metadata\textsuperscript{*} & Static information about how the account is set up & Default profile image, description length, digits in username, verified status \\
+  \midrule
+  \multicolumn{3}{@{}l}{\footnotesize \textsuperscript{*}Available only in the fallback datasets; the PRISMO dataset provides 41 content-based and 21 user-behaviour features.} \\
+  \bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Feature selection.} Not every feature is useful: irrelevant and redundant features can reduce accuracy and increase training time. Following PRISMO, three optimisation algorithms (a Genetic Algorithm, Particle Swarm Optimisation and Simulated Annealing) will each select a feature subset, and these subsets will be combined by priority, keeping the features chosen by at least two of the three algorithms \parencite{agrawal2018prismo}. A smaller feature set also makes the application easier to use, because users only need to provide the selected features. The method is described in more detail in Section~\ref{sec:prismo}.
+
+\paragraph{Models.} As in PRISMO, Random Forest, Na\"ive Bayes, a rule-based learner and a decision tree will be trained on the full feature set and on each selected subset, and their performance will be compared against the objectives in Section~\ref{sec:objectives}. To address the transparency problem, model predictions will be explained using feature-attribution techniques such as SHAP values \parencite{lundberg2017unified}, so that each prediction is accompanied by the factors that influenced it most.
+
+\paragraph{Moderator-centred application.} The trained model will be served through a FastAPI back end and accessed through a React.js front end, designed around how moderators work:
+
+\begin{itemize}[nosep]
+  \item \textbf{Reduced input:} a single account is checked by entering only the features kept by feature selection (around a third of the original 62), or by choosing a sample account.
+  \item \textbf{Plain-language explanations:} each prediction lists its main reasons, comparing the account's values with those of typical genuine and spam accounts.
+  \item \textbf{Confidence and review zone:} predictions close to the decision boundary are labelled \emph{uncertain} and flagged for human review rather than forced into a label.
+  \item \textbf{Batch triage:} uploaded accounts are sorted by risk, with uncertain cases highlighted, so that moderators can deal with the most urgent accounts first and export their decisions.
+  \item \textbf{Interactive visualisations:} interactive charts show why an individual account was flagged, how risk is distributed across a batch, and how the models and feature sets compare.
+\end{itemize}
+
+The design of the application and how it applies recognised usability principles are described in Section~\ref{sec:design}.
+
+\paragraph{User evaluation.} Finally, the tool will be evaluated in a user study in which participants acting as moderators review a set of accounts with and without explanations, and with the reduced and full input forms. The study includes some accounts that the model misclassifies, to test whether explanations help users catch errors (RQ4). Results will be measured through task time, decision accuracy, the System Usability Scale \parencite{brooke1996sus} and a trust questionnaire.

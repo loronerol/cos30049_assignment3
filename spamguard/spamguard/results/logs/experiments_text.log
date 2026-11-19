@@ -1,0 +1,26 @@
+[16:13:41] Full RandomForest         F1m=0.9902+/-0.0055 TPR=0.9901 TNR=0.9934 AUC=0.9981 fit=1401ms
+[16:13:45] Full NaiveBayes           F1m=0.7249+/-0.0187 TPR=0.9818 TNR=0.4301 AUC=0.9543 fit=159ms
+[16:14:14] Full RIPPER               F1m=0.9841+/-0.0064 TPR=0.9869 TNR=0.9835 AUC=0.9901 fit=5765ms
+[16:14:15] Full DecisionTree         F1m=0.9836+/-0.0059 TPR=0.9888 TNR=0.9785 AUC=0.9877 fit=483ms
+[16:14:18] Full HistGradientBoosting F1m=0.9904+/-0.0051 TPR=0.9901 TNR=0.9938 AUC=0.9981 fit=2151ms
+[16:14:18] FS1  RandomForest         F1m=0.9907+/-0.0056 TPR=0.9894 TNR=0.9959 AUC=0.9976 fit=682ms
+[16:14:18] FS1  NaiveBayes           F1m=0.6828+/-0.0200 TPR=0.9497 TNR=0.3917 AUC=0.8989 fit=22ms
+[16:14:42] FS1  RIPPER               F1m=0.9804+/-0.0068 TPR=0.9844 TNR=0.9785 AUC=0.9885 fit=3245ms
+[16:14:42] FS1  DecisionTree         F1m=0.9819+/-0.0048 TPR=0.9873 TNR=0.9769 AUC=0.9898 fit=97ms
+[16:14:43] FS1  HistGradientBoosting F1m=0.9900+/-0.0062 TPR=0.9909 TNR=0.9913 AUC=0.9980 fit=473ms
+[16:14:45] FS2  RandomForest         F1m=0.9913+/-0.0046 TPR=0.9911 TNR=0.9942 AUC=0.9977 fit=1317ms
+[16:14:45] FS2  NaiveBayes           F1m=0.9289+/-0.0150 TPR=0.9789 TNR=0.8585 AUC=0.9759 fit=104ms
+[16:15:10] FS2  RIPPER               F1m=0.9804+/-0.0077 TPR=0.9822 TNR=0.9827 AUC=0.9885 fit=4190ms
+[16:15:11] FS2  DecisionTree         F1m=0.9791+/-0.0106 TPR=0.9856 TNR=0.9728 AUC=0.9840 fit=186ms
+[16:15:12] FS2  HistGradientBoosting F1m=0.9897+/-0.0050 TPR=0.9899 TNR=0.9926 AUC=0.9982 fit=765ms
+[16:15:13] FS3  RandomForest         F1m=0.9908+/-0.0049 TPR=0.9899 TNR=0.9955 AUC=0.9979 fit=1077ms
+[16:15:13] FS3  NaiveBayes           F1m=0.7469+/-0.0215 TPR=0.9793 TNR=0.4718 AUC=0.9499 fit=34ms
+[16:15:55] FS3  RIPPER               F1m=0.9814+/-0.0084 TPR=0.9835 TNR=0.9827 AUC=0.9879 fit=4624ms
+[16:15:55] FS3  DecisionTree         F1m=0.9800+/-0.0067 TPR=0.9875 TNR=0.9715 AUC=0.9854 fit=199ms
+[16:15:56] FS3  HistGradientBoosting F1m=0.9890+/-0.0055 TPR=0.9890 TNR=0.9922 AUC=0.9976 fit=767ms
+[16:15:58] FS4  RandomForest         F1m=0.9905+/-0.0060 TPR=0.9899 TNR=0.9946 AUC=0.9976 fit=980ms
+[16:15:58] FS4  NaiveBayes           F1m=0.8149+/-0.0471 TPR=0.9725 TNR=0.6142 AUC=0.9541 fit=37ms
+[16:16:18] FS4  RIPPER               F1m=0.9792+/-0.0104 TPR=0.9827 TNR=0.9785 AUC=0.9883 fit=3854ms
+[16:16:18] FS4  DecisionTree         F1m=0.9814+/-0.0061 TPR=0.9871 TNR=0.9761 AUC=0.9859 fit=34ms
+[16:16:18] FS4  HistGradientBoosting F1m=0.9907+/-0.0048 TPR=0.9901 TNR=0.9946 AUC=0.9981 fit=319ms
+[16:16:18] chosen: RandomForest on FS4 (CV macro-F1 0.9905; Full 0.9902)

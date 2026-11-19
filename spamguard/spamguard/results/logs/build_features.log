@@ -1,0 +1,8 @@
+[23:44:34] genuine_accounts: 3,474 users, 212,249 tweets kept (<=200/account)
+[23:44:42] TFP: 469 users, 71,342 tweets kept (<=200/account)
+[23:45:03] E13: 1,481 users, 268,040 tweets kept (<=200/account)
+[23:45:21] social_spambots_1: 991 users, 198,110 tweets kept (<=200/account)
+[23:45:27] social_spambots_2: 3,457 users, 374,258 tweets kept (<=200/account)
+[23:45:43] social_spambots_3: 464 users, 92,627 tweets kept (<=200/account)
+[23:45:45] traditional_spambots_1: 1,000 users, 47,540 tweets kept (<=200/account)
+[23:45:46] done: 8,941 accounts x 64 features; train 7,152 / test 1,789; balance {'spam': 5912, 'genuine': 3029}

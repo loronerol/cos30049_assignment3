@@ -1,0 +1,66 @@
+% =====================================================================
+%  Development schedule 
+% =====================================================================
+{\renewcommand{\arraystretch}{1.15}\small
+\begin{longtable}{@{}l >{\raggedright\arraybackslash}p{0.31\textwidth} l l r c >{\raggedright\arraybackslash}p{0.13\textwidth}@{}}
+  \caption{Development schedule}\label{tab:schedule} \\
+  \toprule
+  \textbf{ID} & \textbf{Activity} & \textbf{Start} & \textbf{End} & \textbf{Days} & \textbf{Owner} & \textbf{Predecessors} \\
+  \midrule
+  \endfirsthead
+  \multicolumn{7}{@{}l}{\small\itshape Table~\thetable{} continued} \\
+  \toprule
+  \textbf{ID} & \textbf{Activity} & \textbf{Start} & \textbf{End} & \textbf{Days} & \textbf{Owner} & \textbf{Predecessors} \\
+  \midrule
+  \endhead
+  \midrule
+  \multicolumn{7}{@{}r}{\small\itshape Continued on next page} \\
+  \endfoot
+  \bottomrule
+  \multicolumn{7}{@{}l}{\footnotesize\parbox{\textwidth}{\vspace{0.3em}
+  $^{a}$Implementation starts on sample data before the dataset arrives; final runs require the prepared dataset.
+  $^{b}$An initial prototype is included in this plan (Section~\ref{sec:prototype}); it is refined until Week~3.
+  $^{c}$Built against a mock model first; the real model is connected after M8.
+  $^{d}$Unit tests start earlier; system tests begin after integration.
+  Days are calendar days, inclusive. Where two owners are listed, the first is accountable and the second shares the work.}} \\
+  \endlastfoot
+  \multicolumn{7}{@{}l}{\cellcolor{brandprimary!8}\textbf{\sffamily 1 \quad Project Management}} \\
+  1.1 & Project initiation \& planning & Sun 20 Sep & Sun 11 Oct & 22 & TKN & -- \\
+  1.2 & Meetings \& progress reporting & Sun 20 Sep & Sun 6 Dec & 78 & TKN & -- \\
+  1.3 & Risk \& change management & Mon 5 Oct & Sun 6 Dec & 63 & TKN & 1.1 \\
+  \multicolumn{7}{@{}l}{\cellcolor{brandprimary!8}\textbf{\sffamily 2 \quad Data Collection \& Preparation}} \\
+  2.1 & Dataset request \& acquisition & Mon 5 Oct & Mon 12 Oct & 8 & TKN & -- \\
+  2.2 & Exploratory data analysis & Tue 13 Oct & Sun 18 Oct & 6 & NMV & 2.1 \\
+  2.3 & Data cleaning \& pre-processing & Tue 13 Oct & Wed 21 Oct & 9 & HDN & 2.1 \\
+  2.4 & Feature preparation & Tue 13 Oct & Tue 20 Oct & 8 & TKN & 2.1 \\
+  \multicolumn{7}{@{}l}{\cellcolor{brandprimary!8}\textbf{\sffamily 3 \quad Feature Subset Selection}} \\
+  3.1 & Baseline (full feature set) & Thu 22 Oct & Fri 23 Oct & 2 & NKNT & 2.3, 2.4, 4.1 \\
+  3.2 & GA feature selection & Mon 12 Oct & Sun 25 Oct & 14 & NKNT & 2.3, 2.4$^{a}$ \\
+  3.3 & PSO feature selection & Mon 12 Oct & Sun 25 Oct & 14 & NMV & 2.3, 2.4$^{a}$ \\
+  3.4 & SA feature selection & Mon 12 Oct & Sun 25 Oct & 14 & TKN & 2.3, 2.4$^{a}$ \\
+  3.5 & Priority-based feature formation & Mon 26 Oct & Tue 27 Oct & 2 & NMV & 3.2--3.4 \\
+  \multicolumn{7}{@{}l}{\cellcolor{brandprimary!8}\textbf{\sffamily 4 \quad Classification \& Evaluation}} \\
+  4.1 & Classifier implementation & Mon 5 Oct & Sun 18 Oct & 14 & NKNT, TKN & --$^{a}$ \\
+  4.2 & Cross-validation experiments & Tue 27 Oct & Thu 29 Oct & 3 & NKNT & 3.1, 3.5 \\
+  4.3 & Comparison \& model selection & Thu 29 Oct & Fri 30 Oct & 2 & NMV & 4.2 \\
+  4.4 & Prediction explanations & Mon 2 Nov & Sun 8 Nov & 7 & NKNT & 4.5 \\
+  4.5 & Model export & Fri 30 Oct & Sat 31 Oct & 2 & NKNT & 4.3 \\
+  \multicolumn{7}{@{}l}{\cellcolor{brandprimary!8}\textbf{\sffamily 5 \quad Application Development}} \\
+  5.1 & System architecture design & Mon 5 Oct & Fri 9 Oct & 5 & HDN & -- \\
+  5.2 & Front-end prototype & Mon 5 Oct & Sun 25 Oct & 21 & HDN & 5.1$^{b}$ \\
+  5.3 & Prediction API (FastAPI) & Mon 26 Oct & Sun 15 Nov & 21 & HDN & 5.1, 4.5$^{c}$ \\
+  5.4 & Web application (React) & Mon 2 Nov & Sun 22 Nov & 21 & HDN & 5.2 \\
+  5.5 & Decision support \& study mode & Mon 9 Nov & Fri 20 Nov & 12 & NKNT, TKN & 4.4, 5.3 \\
+  5.6 & Interactive visualisations & Mon 2 Nov & Fri 20 Nov & 19 & NMV, TKN & 4.3 \\
+  \multicolumn{7}{@{}l}{\cellcolor{brandprimary!8}\textbf{\sffamily 6 \quad Integration, Testing \& User Evaluation}} \\
+  6.1 & System integration & Mon 16 Nov & Sun 22 Nov & 7 & HDN & 5.3--5.6 \\
+  6.2 & Functional \& performance testing & Mon 16 Nov & Wed 2 Dec & 17 & NKNT & 6.1$^{d}$ \\
+  6.3 & User study design \& ethics & Mon 2 Nov & Fri 20 Nov & 19 & NMV & M3 \\
+  6.4 & User study sessions \& analysis & Mon 23 Nov & Mon 30 Nov & 8 & NMV, TKN & 6.1, 6.3 \\
+  \multicolumn{7}{@{}l}{\cellcolor{brandprimary!8}\textbf{\sffamily 7 \quad Closure \& Submissions}} \\
+  7.1 & Assignment 2 report \& code package & Mon 26 Oct & Mon 2 Nov & 8 & TKN & 4.3 \\
+  7.2 & Assignment 3 report & Mon 23 Nov & Sun 6 Dec & 14 & TKN & 6.1 \\
+  7.3 & Demonstration video & Wed 2 Dec & Sat 5 Dec & 4 & HDN, TKN & M12 \\
+  7.4 & Handover \& lessons learned & Mon 7 Dec & Tue 8 Dec & 2 & TKN & M13 \\
+\end{longtable}
+}

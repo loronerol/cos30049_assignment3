@@ -1,0 +1,31 @@
+[14:54:56] fold 0: train 5721, score 1431
+W1019 14:55:27.764000 36376 Lib\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+W1019 14:55:32.821000 36376 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[14:56:54]   epoch 1: train_loss=0.2729 val_loss=0.1508 val_F1m=0.9387
+[14:58:05]   epoch 2: train_loss=0.1436 val_loss=0.1222 val_F1m=0.9503
+[14:59:30]   epoch 3: train_loss=0.1134 val_loss=0.1273 val_F1m=0.9502
+[14:59:43] fold 1: train 5721, score 1431
+[15:01:37]   epoch 1: train_loss=0.2783 val_loss=0.1363 val_F1m=0.9526
+[15:03:51]   epoch 2: train_loss=0.1401 val_loss=0.1423 val_F1m=0.9509
+[15:05:40]   epoch 3: train_loss=0.1140 val_loss=0.1438 val_F1m=0.9469
+[15:05:54] fold 2: train 5722, score 1430
+[15:11:21]   epoch 1: train_loss=0.2799 val_loss=0.1532 val_F1m=0.9401
+[15:13:34]   epoch 2: train_loss=0.1429 val_loss=0.1620 val_F1m=0.9422
+[15:15:47]   epoch 3: train_loss=0.1167 val_loss=0.1701 val_F1m=0.9443
+[15:15:52] fold 3: train 5722, score 1430
+Traceback (most recent call last):
+  File "D:\SpamSentinel\ml\scripts\train_text_encoder.py", line 106, in <module>
+    main()
+  File "D:\SpamSentinel\ml\scripts\train_text_encoder.py", line 66, in main
+    model, tok, info = train_encoder(tr["text"].tolist(), tr["label"].to_numpy(), cfg, log)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\SpamSentinel\ml\spamsentinel_ml\text\encoder.py", line 133, in train_encoder
+    running += loss.item()
+               ^^^^^^^^^^^
+torch.AcceleratorError: CUDA error: unknown error
+Search for `cudaErrorUnknown' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+

@@ -1,0 +1,61 @@
+{
+  "n_accounts": 201,
+  "rewriter": "local",
+  "parse_failures": 0,
+  "prismo_rf_fs4": {
+    "tpr_before": 0.9850746268656716,
+    "tpr_after": 0.9850746268656716,
+    "tpr_drop": 0.0
+  },
+  "text_encoder": {
+    "tpr_before": 0.9751243781094527,
+    "tpr_after": 0.527363184079602,
+    "mean_score_before": 0.973260223865509,
+    "mean_score_after": 0.5334715247154236,
+    "tpr_drop": 0.4477611940298507
+  },
+  "rf_fs4_plus_text": {
+    "tpr_before": 0.9850746268656716,
+    "tpr_after": 0.9850746268656716,
+    "text_feature_in_model": true,
+    "tpr_drop": 0.0
+  },
+  "qlora_llm": {
+    "tpr_before": 0.9850746268656716,
+    "tpr_after": 0.9850746268656716,
+    "tpr_drop": 0.0
+  },
+  "features_changed_by_rewrite": [
+    "hashtags_per_tweet_max",
+    "hashtags_per_tweet_mean",
+    "urls_per_tweet_max",
+    "urls_per_tweet_mean",
+    "urls_per_tweet_median",
+    "mentions_per_tweet_max",
+    "mentions_per_tweet_mean",
+    "mentions_per_tweet_median",
+    "chars_per_tweet_max",
+    "chars_per_tweet_min",
+    "chars_per_tweet_mean",
+    "chars_per_tweet_median",
+    "words_per_tweet_max",
+    "words_per_tweet_min",
+    "words_per_tweet_mean",
+    "words_per_tweet_median",
+    "digits_per_tweet_max",
+    "digits_per_tweet_min",
+    "digits_per_tweet_mean",
+    "digits_per_tweet_median",
+    "frac_tweets_with_url",
+    "frac_tweets_with_hashtag",
+    "frac_tweets_with_mention",
+    "frac_retweets",
+    "frac_tweets_with_spam_word",
+    "frac_duplicate_tweets",
+    "distinct_mentions_per_tweet",
+    "inter_tweet_hours_max",
+    "inter_tweet_hours_min",
+    "inter_tweet_hours_mean",
+    "inter_tweet_hours_median"
+  ]
+}

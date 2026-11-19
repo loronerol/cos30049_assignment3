@@ -1,0 +1,99 @@
+% =====================================================================
+%  5. TIME MANAGEMENT
+% =====================================================================
+\section{Time Management}\label{sec:time}
+
+% Owner colours used in the Gantt chart and its legend
+\definecolor{ownerTKN}{HTML}{D50032}
+\definecolor{ownerNMV}{HTML}{0F766E}
+\definecolor{ownerHDN}{HTML}{D97706}
+\definecolor{ownerNKNT}{HTML}{6D28D9}
+
+The project runs from Sunday 20 September, when the team held its kick-off meeting, to Tuesday 8 December 2026. Its schedule is structured around the three \unitcode{} assessment deadlines, which divide the work into three stages, followed by a short closure period. Throughout this section, project weeks run from Monday to Sunday. Week~1 (W1) begins on Monday 5 October, and the planning weeks before it are numbered W$-$2 to W0.
+
+\subsection{Project Stages and Assessment Deadlines}\label{sec:stages}
+
+Table~\ref{tab:stages} maps each stage to its assessment, required submission and work packages. Each assessment submission is a hard deadline and is therefore treated as a fixed milestone in the schedule.
+
+\begin{table}[htbp]
+\centering
+\caption{Project stages, assessment deadlines and submissions}
+\label{tab:stages}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.2\textwidth} >{\raggedright\arraybackslash}p{0.19\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.12\textwidth}@{}}
+  \toprule
+  \textbf{Stage} & \textbf{Period and Deadline} & \textbf{Required Submission} & \textbf{WBS} \\
+  \midrule
+  \textbf{1. Planning and design} & W$-$2 to W1 (20 Sep -- 11 Oct)\newline \textbf{A1:} Sun 11 Oct & This Project Management Plan, including the initial front-end prototype & 1.1, 5.1, 5.2 \\
+  \addlinespace
+  \textbf{2. AI model development} (answers RQ1) & W2--W5 (12 Oct -- 2 Nov)\newline \textbf{A2:} Mon 2 Nov & Report (up to 3,000 words, PDF) and a ZIP file containing the processed datasets (CSV/JSON), a README explaining how to run the code, and the source code including the final models & 2, 3, 4.1--4.3, 4.5, 7.1 \\
+  \addlinespace
+  \textbf{3. Application development and evaluation} (answers RQ2--RQ5) & W5--W9 (2 Nov -- 6 Dec)\newline \textbf{A3:} Sun 6 Dec & Report (PDF), a ZIP file containing the React front end, the FastAPI back end with the integrated model and a README, and a demonstration video of up to 7 minutes & 4.4, 5.3--5.6, 6, 7.2, 7.3 \\
+  \addlinespace
+  \textbf{4. Closure} & W10 (7--8 Dec) & No submission; handover and lessons learned & 7.4 \\
+  \bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Milestones}\label{sec:milestones}
+
+Table~\ref{tab:milestones} lists the project's milestones. Assessment deadlines are shown in bold.
+
+\begin{table}[htbp]
+\centering
+\caption{Project milestones}
+\label{tab:milestones}
+\begin{tabularx}{\textwidth}{@{}l l >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.33\textwidth}@{}}
+  \toprule
+  \textbf{ID} & \textbf{Date} & \textbf{Milestone} & \textbf{Completion Evidence} \\
+  \midrule
+  M1  & Sun 20 Sep & Project kick-off & Topic, team roles and working approach agreed (Meeting~1) \\
+  M2  & Mon 5 Oct  & Dataset request sent & Email sent to the PRISMO dataset authors; fallback dataset downloaded \\
+  M3  & Fri 9 Oct  & Ethics requirements confirmed & Tutor's advice on ethics approval for the user study recorded \\
+  \textbf{M4}  & \textbf{Sun 11 Oct} & \textbf{Assignment 1 submitted} & Project Management Plan submitted \\
+  M5  & Mon 12 Oct & Dataset decision & PRISMO dataset received, or switch to the fallback dataset confirmed \\
+  M6  & Sun 25 Oct & Front-end prototype finalised & Prototype reviewed and approved by the team \\
+  M7  & Tue 27 Oct & Feature selection complete & Subsets FS1--FS4 produced and documented \\
+  M8  & Sat 31 Oct & Final model exported & Selected model and pipeline saved and loadable \\
+  \textbf{M9}  & \textbf{Mon 2 Nov}  & \textbf{Assignment 2 submitted} & Model report and ZIP package submitted \\
+  M10 & Sun 22 Nov & Core application integrated & All \textbf{Must} features working end to end \\
+  M11 & Mon 30 Nov & User study complete & Sessions run and results analysed \\
+  M12 & Wed 2 Dec  & Code freeze & No new features; only bug fixes and documentation \\
+  \textbf{M13} & \textbf{Sun 6 Dec}  & \textbf{Assignment 3 submitted} & Report, ZIP package and demonstration video submitted \\
+  M14 & Tue 8 Dec  & Project closed & Retrospective held and lessons learned recorded \\
+  \bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Development Schedule}\label{sec:schedule}
+
+Table~\ref{tab:schedule} shows the start and end dates, duration, owner and predecessors of every work package in the WBS (Section~\ref{sec:wbs}). The schedule was built around four principles:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Work in parallel from Week 1.} No member waits on another stage to begin. While the dataset is being requested, the classifiers and the GA, PSO and SA algorithms are implemented and tested on sample data. Meanwhile, the Software Engineering member designs the architecture and prototype, and builds the pre-processing pipeline, which is later reused by the back end.
+  \item \textbf{Make the dataset decision quickly.} Assignment~2 leaves only three weeks after the dataset is received, so the decision point (M5) is set one week after the request rather than two. The fallback dataset is downloaded in Week~1 so that a switch causes no further waiting.
+  \item \textbf{Protect the assessment deadlines.} A code freeze (M12) four days before Assignment~3 leaves time for the demonstration video, final testing and the report.
+  \item \textbf{Start the next stage early.} Work for Stage~3 that does not depend on the final model, such as the API skeleton and the prototype, begins during Stage~2.
+\end{enumerate}
+
+\paragraph{Critical path.} In Stage~2, the critical path runs through dataset acquisition, pre-processing, feature selection, priority-based feature formation, cross-validation, model comparison and the Assignment~2 report (2.1 $\rightarrow$ 2.3 $\rightarrow$ 3.2--3.4 $\rightarrow$ 3.5 $\rightarrow$ 4.2 $\rightarrow$ 4.3 $\rightarrow$ 7.1). It has almost no float, so any delay will be absorbed by contingency hours (Section~\ref{sec:wbs-dictionary}) or by reducing the number of experiment runs rather than by moving the deadline. In Stage~3, the critical path runs from model export through the API, integration, the user study and the Assignment~3 report (4.5 $\rightarrow$ 5.3 $\rightarrow$ 6.1 $\rightarrow$ 6.4 $\rightarrow$ 7.2), protected by the four-day buffer after the code freeze.
+
+\input{sections/schedule-table}
+
+\subsection{Gantt Chart}\label{sec:gantt}
+
+Figure~\ref{fig:gantt} presents the schedule as a Gantt chart. Bars are coloured by owner, group bars summarise each WBS branch, and diamonds mark milestones and assessment deadlines.
+
+\begin{figure}[p]
+\centering
+\resizebox{\textwidth}{!}{\input{figures/gantt}}
+
+\smallskip
+{\scriptsize\sffamily
+\textcolor{ownerTKN}{\rule{9pt}{6pt}}~TKN (\memberOne) \quad
+\textcolor{ownerNMV}{\rule{9pt}{6pt}}~NMV (\memberTwo) \quad
+\textcolor{ownerHDN}{\rule{9pt}{6pt}}~HDN (\memberThree) \quad
+\textcolor{ownerNKNT}{\rule{9pt}{6pt}}~NKNT (\memberFour) \quad
+\textcolor{brandaccent}{$\blacklozenge$}~Milestone}
+\caption{Gantt chart for the \projectname{} project (W1 begins Monday 5 October 2026)}
+\label{fig:gantt}
+\end{figure}

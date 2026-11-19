@@ -1,0 +1,190 @@
+% =====================================================================
+%  4. SCOPE MANAGEMENT
+% =====================================================================
+\section{Scope Management}\label{sec:scope}
+
+Scope management defines and controls what is, and is not, included in the project, so that the team delivers everything required and nothing that is not \parencite{pmi2021pmbok}. This section presents the project scope statement, the assumptions and constraints that shape it, the Work Breakdown Structure (WBS) and the WBS dictionary.
+
+\subsection{Project Scope Statement}\label{sec:scope-statement}
+
+\paragraph{Scope description.} The project will reproduce the PRISMO spam detection methodology \parencite{agrawal2018prismo} on a labelled dataset of real social media accounts, and deliver the resulting model through \projectname{}, a moderator-centred web application that lets users check individual accounts or triage batches of accounts, see in plain language why each account was classified as genuine or spam, and identify uncertain cases that need human review. The tool will then be evaluated in a user study to answer research questions RQ2--RQ5 (Section~\ref{sec:rqs}). Work covers the full life cycle, from dataset acquisition and feature selection through classification, evaluation and application development, to user evaluation and closure.
+
+\paragraph{Core and stretch scope.} Following the prioritisation in Section~\ref{sec:requirements}, the scope is divided into two tiers:
+
+\begin{itemize}[nosep]
+  \item \textbf{Core scope} (all \textbf{Must} requirements): the complete PRISMO pipeline (data preparation, GA, PSO and SA feature selection, priority-based feature formation, four classifiers and 10-fold cross-validation), the FastAPI back end, the React front end with its decision-support features (plain-language explanations, uncertainty review zone, reduced-input single-account check and batch triage queue), at least three types of interactive chart, study mode, testing, and the user study.
+  \item \textbf{Stretch scope} (\textbf{Should} and \textbf{Could} requirements): global feature insights, an additional gradient-boosting classifier, the help page and moderator feedback. Stretch items begin only once the core scope is complete and stable.
+\end{itemize}
+
+\paragraph{Project deliverables.} Table~\ref{tab:deliverables} lists the deliverables the project will produce, grouped by the assessment in which each is submitted.
+
+\begin{table}[htbp]
+\centering
+\caption{Project deliverables and due dates}
+\label{tab:deliverables}
+\begin{tabularx}{\textwidth}{@{}l >{\raggedright\arraybackslash}p{0.24\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.13\textwidth} l@{}}
+  \toprule
+  \textbf{ID} & \textbf{Deliverable} & \textbf{Description} & \textbf{Due} & \textbf{WBS} \\
+  \midrule
+  D1 & Project Management Plan & This document, including the initial front-end prototype & A1, Sun 11 Oct & 1.1, 5.2 \\
+  \midrule
+  D2 & Processed datasets & Cleaned, pre-processed datasets and selected feature subsets (CSV/JSON) & A2, Mon 2 Nov & 2, 3 \\
+  D3 & Model source code and final models & Python implementation of pre-processing, GA, PSO, SA, priority-based feature formation and classifiers, with the exported final model & A2, Mon 2 Nov & 3, 4 \\
+  D4 & AI model report and README & Report of up to 3,000 words (PDF) presenting methods, results and the comparison with PRISMO (RQ1); README explaining how to run the code & A2, Mon 2 Nov & 4.3, 7.1 \\
+  \midrule
+  D5 & Web application source code & React front end, FastAPI back end with the integrated model, and a README covering set-up and configuration & A3, Sun 6 Dec & 4.4, 5, 6.1 \\
+  D6 & User study results & Study protocol, ethics documentation, anonymised results and analysis answering RQ2--RQ5, included in the Assignment~3 report & A3, Sun 6 Dec & 6.3, 6.4 \\
+  D7 & Web application report & Report (PDF) covering architecture, implementation, API documentation, model integration and conclusions & A3, Sun 6 Dec & 7.2 \\
+  D8 & Demonstration video & Video of up to 7 minutes (MP4) showing all functionality and responsiveness on desktop, tablet and mobile & A3, Sun 6 Dec & 7.3 \\
+  \midrule
+  D9 & Lessons learned record & Retrospective findings and final, archived repository & Tue 8 Dec & 7.4 \\
+  \bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{In scope and out of scope.} Table~\ref{tab:in-out-scope} sets clear boundaries for the project. Any request to move an item from out of scope to in scope must go through the change control process (Section~\ref{sec:change-control}).
+
+\begin{table}[htbp]
+\centering
+\caption{In-scope and out-of-scope items}
+\label{tab:in-out-scope}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X@{}}
+  \toprule
+  \textbf{In scope} & \textbf{Out of scope} \\
+  \midrule
+  \begin{itemize}[nosep, leftmargin=*, label={\color{brandprimary}\textbullet}]
+    \item Account-level spam classification using public, labelled research datasets
+    \item Reproducing PRISMO's method (feature selection and classification)
+    \item Comparing results against the ranges reported by PRISMO
+    \item Python implementation of all algorithms
+    \item Prediction API and web application for single and batch checks
+    \item Plain-language explanations, uncertainty review zone and batch triage
+    \item User study with student participants acting as moderators
+    \item Functional, performance and usability testing
+    \item React.js front end with at least three interactive chart types, and FastAPI back end
+  \end{itemize}
+  &
+  \begin{itemize}[nosep, leftmargin=*, label={\color{brandaccent}\textbullet}]
+    \item Collecting live data from social media platforms or their APIs
+    \item Real-time monitoring of platforms, or automatically suspending accounts
+    \item Matching PRISMO's exact reported numbers
+    \item Studies with real platform moderators
+    \item Post-level fact-checking or misinformation verification
+    \item Analysis of images, video, or non-English content
+    \item User registration (sign-up) and stored user accounts or personal data
+    \item Production-scale cloud deployment, and native mobile apps (mobile users are supported through the responsive web application)
+  \end{itemize}
+  \\
+  \bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Assumptions and Constraints}\label{sec:assumptions}
+
+\paragraph{Assumptions.} The plan is based on the following assumptions. If any proves false, it will be treated as a risk (Section~\ref{sec:risk}) or a change request (Section~\ref{sec:change-control}).
+
+\begin{enumerate}[label=\textbf{A\arabic*}, leftmargin=2.5em, nosep]
+  \item Access to the PRISMO dataset will be granted within one week of the request; otherwise, a fallback dataset (Cresci-2017 or TwiBot-20) is suitable.
+  \item Each team member can contribute about 12 hours per week throughout the project.
+  \item Team members' laptops are powerful enough to run all experiments; no GPU or paid cloud computing is required.
+  \item The free, open-source Python libraries the project depends on (e.g.\ for machine learning, optimisation and web development) are available and stable.
+  \item The tutor is available for regular consultation and feedback.
+  \item Any ethics approval required for the user study can be obtained before the study is scheduled to begin, and 8--12 participants can be recruited.
+\end{enumerate}
+
+\paragraph{Constraints.}
+
+\begin{enumerate}[label=\textbf{C\arabic*}, leftmargin=2.5em, nosep]
+  \item \textbf{Time:} the project runs for about eleven and a half weeks, from the kick-off meeting on 20 September to 8 December 2026, with fixed assessment deadlines on 11 October, 2 November and 6 December (Section~\ref{sec:time}).
+  \item \textbf{Technology:} the unit requires a React.js front end and a FastAPI back end, with at least two HTTP methods and at least two chart types (three interactive chart types for a High Distinction).
+  \item \textbf{Budget:} there is no project budget; only free and open-source tools, and free tiers of any services, may be used.
+  \item \textbf{People:} the team has four members. Application development is led by the Software Engineering member, but the Project Manager also has full-stack development skills and the other members can support application tasks when needed.
+  \item \textbf{Data:} the project is limited to publicly available, pre-labelled research datasets. The PRISMO dataset was collected in 2009 and provides only pre-computed features, so the trained model is a proof of concept and may not reflect current spammer behaviour.
+  \item \textbf{Method:} PRISMO does not report its optimisation parameters or fitness function, so the team must make and document its own choices (NFR9).
+  \item \textbf{Participants:} the user study relies on students acting as moderators rather than professional moderators, which limits how far its results can be generalised.
+\end{enumerate}
+
+\subsection{Work Breakdown Structure}\label{sec:wbs}
+
+The WBS breaks the total scope of the project into smaller, manageable work packages \parencite{pmi2021pmbok}. It is deliverable-oriented and follows PRISMO's three phases (WBS 2--4), with packages for project management, moderator-centred application development, integration, testing and user evaluation, and closure around them (Figure~\ref{fig:wbs}). Together, the work packages cover all of the project's scope, and nothing outside it. No work package is stretch scope in its entirety; stretch requirements are delivered within the relevant packages (for example, global feature insights in 4.4 and the help page in 5.4).
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\resizebox{\linewidth}{!}{\input{figures/wbs}}
+\caption{Work Breakdown Structure for the \projectname{} project}
+\label{fig:wbs}
+\end{figure}
+\end{landscape}
+
+\subsection{WBS Dictionary}\label{sec:wbs-dictionary}
+
+The WBS dictionary (Table~\ref{tab:wbs-dictionary}) describes each work package, its output, its owner, its estimated effort and the requirements it delivers. The planned effort totals 386 person-hours, against a team capacity of about 456 person-hours (four members working about 12 hours per week for roughly nine and a half weeks from Week~1; A2, C1). The planning work before Week~1 is included in work package~1.1. The remaining 70 hours (about 15\%) are held as contingency for risks such as switching to a fallback dataset or delays in ethics approval.
+
+{\renewcommand{\arraystretch}{1.2}\small
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.06\textwidth} >{\raggedright\arraybackslash}p{0.38\textwidth} >{\raggedright\arraybackslash}p{0.2\textwidth} >{\centering\arraybackslash}p{0.07\textwidth} >{\centering\arraybackslash}p{0.06\textwidth} >{\raggedright\arraybackslash}p{0.09\textwidth}@{}}
+  \caption{WBS dictionary}\label{tab:wbs-dictionary} \\
+  \toprule
+  \textbf{ID} & \textbf{Work Package and Description} & \textbf{Output} & \textbf{Owner} & \textbf{Hrs} & \textbf{Req.} \\
+  \midrule
+  \endfirsthead
+  \multicolumn{6}{@{}l}{\small\itshape Table~\thetable{} continued} \\
+  \toprule
+  \textbf{ID} & \textbf{Work Package and Description} & \textbf{Output} & \textbf{Owner} & \textbf{Hrs} & \textbf{Req.} \\
+  \midrule
+  \endhead
+  \midrule
+  \multicolumn{6}{@{}r}{\small\itshape Continued on next page} \\
+  \endfoot
+  \bottomrule
+  \multicolumn{6}{@{}l}{\footnotesize\parbox{\textwidth}{\vspace{0.3em}\textbf{Owners:} TKN = \memberOne; NMV = \memberTwo; HDN = \memberThree; NKNT = \memberFour. The owner is accountable for the package (where two are listed, the first is accountable and the second shares the work); hours are the total team effort for the package, not the owner's individual effort.}} \\
+  \endlastfoot
+
+  \multicolumn{6}{@{}p{\textwidth}@{}}{\cellcolor{brandprimary!8}\textbf{\sffamily 1 \quad Project Management} \hfill \textbf{44 h}} \\
+  1.1 & \textbf{Project initiation \& planning} -- define scope, requirements, schedule and risks; produce the Project Management Plan. & Project Management Plan (D1) & TKN & 20 & -- \\
+  1.2 & \textbf{Meetings \& progress reporting} -- run weekly team meetings and tutor consultations; track tasks and report progress. & Meeting minutes, progress reports & TKN & 18 & -- \\
+  1.3 & \textbf{Risk \& change management} -- maintain the risk register; assess and record change requests. & Updated risk register, change log & TKN & 6 & -- \\
+
+  \multicolumn{6}{@{}p{\textwidth}@{}}{\cellcolor{brandprimary!8}\textbf{\sffamily 2 \quad Data Collection \& Preparation} \hfill \textbf{44 h}} \\
+  2.1 & \textbf{Dataset request \& acquisition} -- request the PRISMO dataset on 5 October and download the fallback dataset; switch to the fallback if access is not granted within one week. & Raw dataset; dataset decision (M5) & TKN & 4 & FR1 \\
+  2.2 & \textbf{Exploratory data analysis} -- analyse distributions, correlations and class balance. & EDA notebook and summary & NMV & 14 & FR2 \\
+  2.3 & \textbf{Data cleaning \& pre-processing} -- handle missing and invalid values, scale features, create stratified splits, packaged as a reusable pipeline for the back end. & Cleaned dataset; pre-processing pipeline & HDN & 16 & FR2, NFR10 \\
+  2.4 & \textbf{Feature preparation} -- map features into categories; compute equivalent features if a fallback dataset is used. & Feature matrix and data dictionary (D2) & TKN & 10 & FR3 \\
+
+  \multicolumn{6}{@{}p{\textwidth}@{}}{\cellcolor{brandprimary!8}\textbf{\sffamily 3 \quad Feature Subset Selection} \hfill \textbf{50 h}} \\
+  3.1 & \textbf{Baseline (full feature set)} -- set up the evaluation framework and record baseline results using all features. & Baseline results & NKNT & 4 & FR4 \\
+  3.2 & \textbf{GA feature selection} -- implement the Genetic Algorithm and produce subset FS1. & FS1 and parameters & NKNT & 14 & FR5, NFR9 \\
+  3.3 & \textbf{PSO feature selection} -- implement binary Particle Swarm Optimisation and produce subset FS2. & FS2 and parameters & NMV & 14 & FR5, NFR9 \\
+  3.4 & \textbf{SA feature selection} -- implement Simulated Annealing and produce subset FS3. & FS3 and parameters & TKN & 12 & FR5, NFR9 \\
+  3.5 & \textbf{Priority-based feature formation} -- combine FS1--FS3 into FS4 using PRISMO's priority rules; compare with the subsets reported in the paper. & FS4; feature selection code (D3) & NMV & 6 & FR6 \\
+
+  \multicolumn{6}{@{}p{\textwidth}@{}}{\cellcolor{brandprimary!8}\textbf{\sffamily 4 \quad Classification \& Evaluation} \hfill \textbf{50 h}} \\
+  4.1 & \textbf{Classifier implementation} -- implement Random Forest, Na\"ive Bayes, RIPPER and decision tree classifiers (plus optional gradient boosting). & Classifier code & NKNT, TKN & 12 & FR7 \\
+  4.2 & \textbf{Cross-validation experiments} -- run 10-fold cross-validation for every feature set and classifier combination. & Experiment results & NKNT & 14 & FR8 \\
+  4.3 & \textbf{Comparison \& model selection} -- compare all metrics and build times against PRISMO; select and confirm the final model on the test set. & Evaluation results for D4 & NMV & 10 & FR9, NFR1, NFR2, RQ1 \\
+  4.4 & \textbf{Prediction explanations} -- compute per-prediction feature contributions (e.g.\ SHAP), and global feature insights as stretch scope. & Explanation module & NKNT & 10 & FR11, FR14 \\
+  4.5 & \textbf{Model export} -- save the final model with its pre-processing and feature-selection pipeline. & Exported model file (D3) & NKNT & 4 & FR10 \\
+
+  \multicolumn{6}{@{}p{\textwidth}@{}}{\cellcolor{brandprimary!8}\textbf{\sffamily 5 \quad Application Development} \hfill \textbf{100 h}} \\
+  5.1 & \textbf{System architecture design} -- define components, data flow and API contract. & Architecture diagram; API specification & HDN & 6 & NFR11 \\
+  5.2 & \textbf{Front-end prototype} -- design moderator-centred screens and user flows applying usability heuristics; initial version for this plan, refined by Week 3. & Prototype screens & HDN & 12 & NFR4, NFR6 \\
+  5.3 & \textbf{Prediction API (FastAPI)} -- implement GET and POST endpoints for single and batch prediction, explanations, metrics and features; validate input and handle errors. & Back end (D5) & HDN & 18 & FR17, FR18, NFR3, NFR8 \\
+  5.4 & \textbf{Web application (React)} -- build the responsive reduced-input single-account check, batch triage queue, input validation and help page. & Front end (D5) & HDN & 32 & FR15, FR16, FR18, FR20, NFR7 \\
+  5.5 & \textbf{Decision support \& study mode} -- generate plain-language explanations with reference values, implement the uncertainty review zone, feedback export, study-mode switches and interaction logging. & Decision-support features; study mode & NKNT, TKN & 16 & FR12, FR13, FR21--FR23 \\
+  5.6 & \textbf{Interactive visualisations} -- build at least three interactive chart types (explanation, batch risk distribution, model comparison) with hover, zoom or filtering and image export. & Chart components & NMV, TKN & 16 & FR19 \\
+
+  \multicolumn{6}{@{}p{\textwidth}@{}}{\cellcolor{brandprimary!8}\textbf{\sffamily 6 \quad Integration, Testing \& User Evaluation} \hfill \textbf{48 h}} \\
+  6.1 & \textbf{System integration} -- connect the exported model, API and front end into a working system. & Integrated system (M10) & HDN & 10 & FR10, FR17 \\
+  6.2 & \textbf{Functional \& performance testing} -- test every requirement, response times, responsiveness on desktop, tablet and mobile, and upload security. & Test plan and results & NKNT & 12 & NFR3, NFR7, NFR8 \\
+  6.3 & \textbf{User study design \& ethics} -- design the study protocol, tasks, account set (including misclassified accounts) and questionnaires; obtain any required ethics approval. & Study protocol; ethics documentation & NMV & 10 & NFR12 \\
+  6.4 & \textbf{User study sessions \& analysis} -- recruit participants, run sessions, and analyse task times, decision accuracy, overrides, SUS and trust scores. & User study results (D6) & NMV, TKN & 16 & NFR4, RQ2--RQ5 \\
+
+  \multicolumn{6}{@{}p{\textwidth}@{}}{\cellcolor{brandprimary!8}\textbf{\sffamily 7 \quad Closure \& Submissions} \hfill \textbf{50 h}} \\
+  7.1 & \textbf{Assignment 2 report \& code package} -- write the AI model report and README; package the processed datasets, source code and final models. & D2, D3, D4 & TKN & 16 & RQ1 \\
+  7.2 & \textbf{Assignment 3 report} -- document architecture, implementation, API, model integration, user study findings and conclusions. & Web application report (D7) & TKN & 20 & RQ2--RQ5 \\
+  7.3 & \textbf{Demonstration video} -- record and edit a video of up to 7 minutes showing all features and responsiveness. & Demonstration video (D8) & HDN, TKN & 10 & -- \\
+  7.4 & \textbf{Handover \& lessons learned} -- archive the repository and documentation; hold a retrospective. & Lessons learned record (D9) & TKN & 4 & NFR11 \\
+  \midrule
+  \multicolumn{4}{@{}r}{\textbf{Total planned effort}} & \textbf{386} & \\
+\end{longtable}
+}

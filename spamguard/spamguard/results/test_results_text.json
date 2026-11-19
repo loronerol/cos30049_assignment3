@@ -1,0 +1,166 @@
+{
+  "model": "RandomForest",
+  "cv": {
+    "cv_f1_macro_fs4": 0.9905243533343635,
+    "cv_f1_macro_full_same_model": 0.9902093604170116,
+    "f1_gap_full_minus_fs4": -0.0003149929173519306,
+    "build_time_ms_fs4": 980.1310300012119,
+    "build_time_ms_full": 1401.0327000025427,
+    "cv_folds": 10
+  },
+  "test_reduced": {
+    "accuracy": 0.9877026271660145,
+    "tpr": 0.9873203719357565,
+    "tnr": 0.9884488448844885,
+    "precision": 0.9940425531914894,
+    "f1_spam": 0.9906700593723494,
+    "f1_macro": 0.9863186362435518,
+    "roc_auc": 0.9958222787621112,
+    "fit_ms": 671.5958999993745,
+    "review_band": {
+      "band_low": 0.35,
+      "band_high": 0.65,
+      "share_in_band": 0.0072666294019005035,
+      "n_in_band": 13,
+      "accuracy_in_band": 0.6153846153846154,
+      "accuracy_outside_band": 0.9904279279279279,
+      "errors_caught_by_band": 5,
+      "errors_total": 22
+    },
+    "accuracy_by_group": {
+      "E13": {
+        "n": 296,
+        "accuracy": 0.9831081081081081
+      },
+      "TFP": {
+        "n": 93,
+        "accuracy": 0.989247311827957
+      },
+      "genuine_accounts": {
+        "n": 217,
+        "accuracy": 0.9953917050691244
+      },
+      "social_spambots_1": {
+        "n": 198,
+        "accuracy": 0.9646464646464646
+      },
+      "social_spambots_2": {
+        "n": 692,
+        "accuracy": 0.9942196531791907
+      },
+      "social_spambots_3": {
+        "n": 93,
+        "accuracy": 0.956989247311828
+      },
+      "traditional_spambots_1": {
+        "n": 200,
+        "accuracy": 1.0
+      }
+    }
+  },
+  "test_full": {
+    "accuracy": 0.9877026271660145,
+    "tpr": 0.9864750633981403,
+    "tnr": 0.9900990099009901,
+    "precision": 0.9948849104859335,
+    "f1_spam": 0.9906621392190152,
+    "f1_macro": 0.9863294329482966,
+    "roc_auc": 0.9968928634199008,
+    "fit_ms": 1227.049300010549,
+    "review_band": {
+      "band_low": 0.35,
+      "band_high": 0.65,
+      "share_in_band": 0.0072666294019005035,
+      "n_in_band": 13,
+      "accuracy_in_band": 0.46153846153846156,
+      "accuracy_outside_band": 0.9915540540540541,
+      "errors_caught_by_band": 7,
+      "errors_total": 22
+    },
+    "accuracy_by_group": {
+      "E13": {
+        "n": 296,
+        "accuracy": 0.9831081081081081
+      },
+      "TFP": {
+        "n": 93,
+        "accuracy": 1.0
+      },
+      "genuine_accounts": {
+        "n": 217,
+        "accuracy": 0.9953917050691244
+      },
+      "social_spambots_1": {
+        "n": 198,
+        "accuracy": 0.9747474747474747
+      },
+      "social_spambots_2": {
+        "n": 692,
+        "accuracy": 0.9942196531791907
+      },
+      "social_spambots_3": {
+        "n": 93,
+        "accuracy": 0.946236559139785
+      },
+      "traditional_spambots_1": {
+        "n": 200,
+        "accuracy": 0.99
+      }
+    }
+  },
+  "targets": {
+    "f1_macro_at_least_0.85": true,
+    "tpr_above_prismo_0.724": true,
+    "build_time_reduced_vs_full_ms": [
+      671.5958999993745,
+      1227.049300010549
+    ]
+  },
+  "global_importance": [
+    {
+      "feature": "retweets_received_per_tweet_mean",
+      "importance": 0.33395019962736866
+    },
+    {
+      "feature": "text_spam_score",
+      "importance": 0.30292362148706486
+    },
+    {
+      "feature": "frac_replies",
+      "importance": 0.09432509945634675
+    },
+    {
+      "feature": "account_age_days",
+      "importance": 0.07071677572286704
+    },
+    {
+      "feature": "has_description",
+      "importance": 0.0561359460901465
+    },
+    {
+      "feature": "tweets_per_day_recent",
+      "importance": 0.03824064469800447
+    },
+    {
+      "feature": "followers_count",
+      "importance": 0.030951275911780117
+    },
+    {
+      "feature": "followees_count",
+      "importance": 0.03065583986383754
+    },
+    {
+      "feature": "urls_per_tweet_max",
+      "importance": 0.02724256514278186
+    },
+    {
+      "feature": "words_per_tweet_max",
+      "importance": 0.008723848993976645
+    },
+    {
+      "feature": "chars_per_tweet_max",
+      "importance": 0.006134183005825628
+    }
+  ],
+  "test_accounts": 1789
+}

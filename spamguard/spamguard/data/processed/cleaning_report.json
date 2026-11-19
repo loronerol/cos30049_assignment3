@@ -1,0 +1,75 @@
+{
+  "accounts_in": 8941,
+  "accounts_in_several_groups": 0,
+  "accounts_with_conflicting_labels": 0,
+  "accounts_without_tweets": 0,
+  "accounts_missing_core_counts": 0,
+  "accounts_out": 8941,
+  "missing_values_remaining": 1020,
+  "per_group": {
+    "genuine_accounts": {
+      "dataset": "cresci-2017",
+      "label": 0,
+      "users": 3474,
+      "tweets_kept": 212249,
+      "accounts_with_tweets": 1083
+    },
+    "TFP": {
+      "dataset": "cresci-2015",
+      "label": 0,
+      "users": 469,
+      "tweets_kept": 71342,
+      "accounts_with_tweets": 465
+    },
+    "E13": {
+      "dataset": "cresci-2015",
+      "label": 0,
+      "users": 1481,
+      "tweets_kept": 268040,
+      "accounts_with_tweets": 1481
+    },
+    "social_spambots_1": {
+      "dataset": "cresci-2017",
+      "label": 1,
+      "users": 991,
+      "tweets_kept": 198110,
+      "accounts_with_tweets": 991
+    },
+    "social_spambots_2": {
+      "dataset": "cresci-2017",
+      "label": 1,
+      "users": 3457,
+      "tweets_kept": 374258,
+      "accounts_with_tweets": 3457
+    },
+    "social_spambots_3": {
+      "dataset": "cresci-2017",
+      "label": 1,
+      "users": 464,
+      "tweets_kept": 92627,
+      "accounts_with_tweets": 464
+    },
+    "traditional_spambots_1": {
+      "dataset": "cresci-2017",
+      "label": 1,
+      "users": 1000,
+      "tweets_kept": 47540,
+      "accounts_with_tweets": 1000
+    }
+  },
+  "class_balance": {
+    "spam": 5912,
+    "genuine": 3029
+  },
+  "group_counts": {
+    "social_spambots_2": 3457,
+    "E13": 1481,
+    "genuine_accounts": 1083,
+    "traditional_spambots_1": 1000,
+    "social_spambots_1": 991,
+    "TFP": 465,
+    "social_spambots_3": 464
+  },
+  "train_size": 7152,
+  "test_size": 1789
+}

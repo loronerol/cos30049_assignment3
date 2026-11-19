@@ -1,0 +1,65 @@
+feature,category,unit,description,integer,binary,train_min,train_p01,train_median,train_p99,train_max,missing_rate
+hashtags_per_tweet_max,content,per tweet,Max number of hashtags per tweet,False,False,0.0,0.0,2.0,11.0,28.0,0.0
+hashtags_per_tweet_min,content,per tweet,Min number of hashtags per tweet,False,False,0.0,0.0,0.0,0.0,2.0,0.0
+hashtags_per_tweet_mean,content,per tweet,Mean number of hashtags per tweet,False,False,0.0,0.0,0.0851063829787234,1.489895918367347,4.685,0.0
+hashtags_per_tweet_median,content,per tweet,Median number of hashtags per tweet,False,False,0.0,0.0,0.0,1.0,5.0,0.0
+urls_per_tweet_max,content,per tweet,Max number of URLs per tweet,False,False,0.0,0.0,1.0,3.0,5.0,0.0
+urls_per_tweet_min,content,per tweet,Min number of URLs per tweet,False,False,0.0,0.0,0.0,1.0,1.0,0.0
+urls_per_tweet_mean,content,per tweet,Mean number of URLs per tweet,False,False,0.0,0.0,0.035,1.0,1.93,0.0
+urls_per_tweet_median,content,per tweet,Median number of URLs per tweet,False,False,0.0,0.0,0.0,1.0,2.0,0.0
+mentions_per_tweet_max,content,per tweet,Max number of mentions per tweet,False,False,0.0,0.0,1.0,10.0,17.0,0.0
+mentions_per_tweet_min,content,per tweet,Min number of mentions per tweet,False,False,0.0,0.0,0.0,0.0,1.0,0.0
+mentions_per_tweet_mean,content,per tweet,Mean number of mentions per tweet,False,False,0.0,0.0,0.38461538461538464,1.587449999999999,3.55,0.0
+mentions_per_tweet_median,content,per tweet,Median number of mentions per tweet,False,False,0.0,0.0,0.0,1.0,4.0,0.0
+chars_per_tweet_max,content,per tweet,Max number of characters per tweet,False,False,21.0,48.0,140.0,156.0,374.0,0.0
+chars_per_tweet_min,content,per tweet,Min number of characters per tweet,False,False,0.0,0.0,11.0,68.0,160.0,0.0
+chars_per_tweet_mean,content,per tweet,Mean number of characters per tweet,False,False,16.5,39.58815,71.4946590909091,120.68544999999999,179.795,0.0
+chars_per_tweet_median,content,per tweet,Median number of characters per tweet,False,False,13.0,34.0,72.0,134.0,202.0,0.0
+words_per_tweet_max,content,per tweet,Max number of words per tweet,False,False,2.0,6.0,28.0,34.0,63.0,0.0
+words_per_tweet_min,content,per tweet,Min number of words per tweet,False,False,0.0,0.0,1.0,10.0,21.0,0.0
+words_per_tweet_mean,content,per tweet,Mean number of words per tweet,False,False,1.171875,5.0,12.33,17.62588,23.949367088607595,0.0
+words_per_tweet_median,content,per tweet,Median number of words per tweet,False,False,1.0,4.0,12.0,19.0,25.0,0.0
+digits_per_tweet_max,content,per tweet,Max number of numeric characters per tweet,False,False,0.0,1.0,7.0,33.0,123.0,0.0
+digits_per_tweet_min,content,per tweet,Min number of numeric characters per tweet,False,False,0.0,0.0,0.0,2.0,67.0,0.0
+digits_per_tweet_mean,content,per tweet,Mean number of numeric characters per tweet,False,False,0.0,0.08336498936924168,0.47368421052631576,4.018702290076328,71.8,0.0
+digits_per_tweet_median,content,per tweet,Median number of numeric characters per tweet,False,False,0.0,0.0,0.0,3.0,71.5,0.0
+retweets_received_per_tweet_max,content,per tweet,Max number of times the tweet was retweeted per tweet,False,False,0.0,0.0,2.0,206333.06999999928,3350110.0,0.0
+retweets_received_per_tweet_min,content,per tweet,Min number of times the tweet was retweeted per tweet,False,False,0.0,0.0,0.0,0.0,22.0,0.0
+retweets_received_per_tweet_mean,content,per tweet,Mean number of times the tweet was retweeted per tweet,False,False,0.0,0.0,0.06496753246753247,3143.5481499999823,54237.53333333333,0.0
+retweets_received_per_tweet_median,content,per tweet,Median number of times the tweet was retweeted per tweet,False,False,0.0,0.0,0.0,14.74499999999989,1371.5,0.0
+frac_tweets_with_url,content,fraction,Fraction of tweets containing a URL,False,False,0.0,0.0,0.035,1.0,1.0,0.0
+frac_tweets_with_hashtag,content,fraction,Fraction of tweets containing a hashtag,False,False,0.0,0.0,0.06504065040650407,0.74,1.0,0.0
+frac_tweets_with_mention,content,fraction,Fraction of tweets mentioning another user,False,False,0.0,0.0,0.38,0.975,1.0,0.0
+frac_replies,content,fraction,Fraction of tweets that are replies,False,False,0.0,0.0,0.255,0.62,0.96,0.0
+frac_retweets,content,fraction,Fraction of tweets that are retweets,False,False,0.0,0.0,0.0,0.8274499999999989,1.0,0.0
+frac_tweets_with_spam_word,content,fraction,Fraction of tweets containing a common spam word,False,False,0.0,0.0,0.015,0.5718890977443607,1.0,0.0
+frac_duplicate_tweets,content,fraction,"Fraction of tweets that repeat another tweet (ignoring URLs, mentions and numbers)",False,False,0.0,0.0,0.023575729504400185,0.3870680562001602,0.975,0.0
+frac_third_party_client,content,fraction,Fraction of tweets posted from a non-official (third-party or automated) client,False,False,0.0,0.0,0.0,1.0,1.0,0.0
+n_distinct_sources,content,count,Number of different clients used to post,True,False,1.0,1.0,1.0,11.0,20.0,0.0
+n_tweets_collected,content,count,Number of recent tweets analysed (up to 200),True,False,1.0,1.0,138.0,200.0,200.0,0.0
+distinct_mentions_per_tweet,content,per tweet,"Distinct users mentioned, divided by tweets analysed",False,False,0.0,0.0,0.34177215189873417,0.807449999999999,3.0,0.0
+followers_count,behaviour,count,Number of followers,True,False,0.0,0.0,44.0,6515.4299999999985,986837.0,0.0
+followees_count,behaviour,count,Number of accounts followed,True,False,0.0,0.0,107.0,5982.879999999997,90861.0,0.0
+follower_followee_ratio,behaviour,ratio,Followers divided by followees,False,False,0.0,0.0,0.24640324912232395,8.18588166289809,4794.333333333333,0.0
+statuses_count,behaviour,count,Total tweets posted over the account's life,True,False,1.0,1.0,79.0,61875.859999999695,333504.0,0.0
+favourites_count,behaviour,count,Tweets the account has liked,True,False,0.0,0.0,0.0,14515.619999999992,185467.0,0.0
+listed_count,behaviour,count,Public lists that include the account,True,False,0.0,0.0,0.0,97.48999999999978,4840.0,0.0
+account_age_days,behaviour,days,Account age at its most recent analysed tweet,False,False,1.0,1.0,260.0292534722222,2449.3724309027766,3013.9246296296296,0.0
+tweets_per_day_lifetime,behaviour,per day,Total tweets divided by account age,False,False,0.0018567294677472232,0.027867317896316954,0.4273756686150203,56.34847339683311,547.0440891491684,0.0
+tweets_per_day_recent,behaviour,per day,Analysed tweets divided by the days they span,False,False,0.004230218581122508,0.05213770366527238,1.0202915256009564,97.82890028302131,200.0,0.0
+max_tweets_in_a_day,behaviour,count,Most tweets posted on a single day,True,False,1.0,1.0,16.0,125.0,200.0,0.0
+max_tweets_in_a_week,behaviour,count,Most tweets posted in a single week,True,False,1.0,1.0,31.0,200.0,200.0,0.0
+inter_tweet_hours_max,behaviour,hours,Max time between consecutive tweets,False,False,0.0030555555555555557,6.348066666666667,739.74,7898.030022222158,31042.101666666666,0.02838366890380313
+inter_tweet_hours_min,behaviour,hours,Min time between consecutive tweets,False,False,0.0,0.0,0.0011111111111111111,79.74503333333318,11346.931388888888,0.02838366890380313
+inter_tweet_hours_mean,behaviour,hours,Mean time between consecutive tweets,False,False,0.0021111111111111113,0.23726582914572864,23.20892795138889,527.3151798941788,11346.931388888888,0.02838366890380313
+inter_tweet_hours_median,behaviour,hours,Median time between consecutive tweets,False,False,0.0,0.005416666666666667,0.11361111111111111,246.7637333333329,11346.931388888888,0.02838366890380313
+default_profile,profile,yes/no,Profile theme never changed from the default,False,True,0.0,0.0,0.0,1.0,1.0,0.0
+default_profile_image,profile,yes/no,Uses the default profile image,False,True,0.0,0.0,0.0,0.0,1.0,0.0
+has_description,profile,yes/no,Profile has a description,False,True,0.0,0.0,0.0,1.0,1.0,0.0
+description_length,profile,characters,Length of the profile description,True,False,0.0,0.0,0.0,159.0,298.0,0.0
+name_length,profile,characters,Length of the display name,True,False,0.0,3.0,13.0,20.0,37.0,0.0
+screen_name_length,profile,characters,Length of the username,True,False,3.0,6.0,12.0,15.0,15.0,0.0
+screen_name_digits,profile,count,Digits in the username,True,False,0.0,0.0,0.0,4.0,9.0,0.0
+has_url,profile,yes/no,Profile links to a website,False,True,0.0,0.0,0.0,1.0,1.0,0.0
+geo_enabled,profile,yes/no,Location tagging enabled,False,True,0.0,0.0,0.0,1.0,1.0,0.0
+verified,profile,yes/no,Account is verified,False,True,0.0,0.0,0.0,0.0,1.0,0.0

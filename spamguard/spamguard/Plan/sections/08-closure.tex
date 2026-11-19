@@ -1,0 +1,160 @@
+% =====================================================================
+%  8. PROJECT CLOSURE PLAN
+% =====================================================================
+\section{Project Closure Plan}\label{sec:closure}
+
+Project closure confirms that the project has delivered what it set out to deliver, hands its outputs over to the people who need them, and captures lessons for future projects \parencite{pmi2021pmbok}. Because \projectname{} produces deliverables at three assessment points, acceptance is checked at each submission, and the project is formally closed after Assignment~3.
+
+\subsection{Acceptance Criteria}\label{sec:acceptance}
+
+\paragraph{Acceptance process.} Each deliverable passes through two checks:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Verification by the team.} At the pre-submission review two days before each deadline (Table~\ref{tab:reporting}), the team checks the deliverable against its acceptance criteria below and against the assessment brief. All four members sign off on the submission checklist.
+  \item \textbf{Acceptance by the tutor.} The tutor, as assessor and client, formally accepts each deliverable through the unit's assessment process. Any feedback received before the next stage is reviewed at the following weekly meeting and, where needed, handled through change control.
+\end{enumerate}
+
+\paragraph{Project success criteria.} The project as a whole will be considered successful when the criteria in Table~\ref{tab:success-criteria} are met.
+
+\begin{table}[htbp]
+\centering
+\caption{Project success criteria}
+\label{tab:success-criteria}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.22\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.16\textwidth}@{}}
+  \toprule
+  \textbf{Criterion} & \textbf{Target} & \textbf{Linked To} \\
+  \midrule
+  Timeliness & All three assessments submitted on or before their deadlines (11 Oct, 2 Nov, 6 Dec) & M4, M9, M13 \\
+  Requirements & 100\% of \textbf{Must} requirements implemented and verified, or formally changed through change control & Section~\ref{sec:requirements} \\
+  Detection performance & Selected model achieves a macro-averaged F1-score of at least 0.85 and a spammer detection rate above 72.4\% on the held-out test set & O4, NFR1 \\
+  Feature reduction & The PRISMO-selected subset (FS4) uses at most half of the original features, with a macro F1-score within 0.02 of the full-feature model & RQ1, FR6 \\
+  Usability & System Usability Scale score of at least 68; a first-time user completes a single account check within one minute & NFR4 \\
+  Research questions & RQ1--RQ5 are each answered with evidence in the assessment reports, with limitations stated where a contingency plan was used (e.g.\ R3) & Section~\ref{sec:rqs} \\
+  Effort & Total actual effort stays within the team's capacity of about 456 hours & Section~\ref{sec:wbs-dictionary} \\
+  Quality & No critical defects open at the code freeze (M12) & Table~\ref{tab:kpis} \\
+  \bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Deliverable acceptance criteria.} Table~\ref{tab:acceptance} defines the criteria each deliverable (Table~\ref{tab:deliverables}) must meet before it is submitted, and how each is verified.
+
+{\renewcommand{\arraystretch}{1.2}\small
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.48\textwidth} >{\raggedright\arraybackslash}p{0.27\textwidth}@{}}
+  \caption{Deliverable acceptance criteria}\label{tab:acceptance} \\
+  \toprule
+  \textbf{Deliverable} & \textbf{Acceptance Criteria} & \textbf{Verification Method} \\
+  \midrule
+  \endfirsthead
+  \multicolumn{3}{@{}l}{\small\itshape Table~\thetable{} continued} \\
+  \toprule
+  \textbf{Deliverable} & \textbf{Acceptance Criteria} & \textbf{Verification Method} \\
+  \midrule
+  \endhead
+  \midrule
+  \multicolumn{3}{@{}r}{\small\itshape Continued on next page} \\
+  \endfoot
+  \bottomrule
+  \endlastfoot
+
+  \multicolumn{3}{@{}l}{\cellcolor{brandprimary!8}\textbf{\sffamily Assignment 1 -- due Sun 11 Oct}} \\
+  \textbf{D1} Project Management Plan &
+  Contains every required section, including the front-end prototype and its alignment with usability principles; scope, schedule, effort and risks are consistent with each other; all sources are cited in Harvard style. &
+  Checklist against the assessment brief; consistency check of requirement, WBS and milestone references \\
+
+  \multicolumn{3}{@{}l}{\cellcolor{brandprimary!8}\textbf{\sffamily Assignment 2 -- due Mon 2 Nov}} \\
+  \textbf{D2} Processed datasets &
+  Provided as CSV/JSON; no missing or invalid values remain; training and test splits are stratified and documented; a data dictionary describes every feature; inclusion complies with the dataset's terms of use (R13). &
+  Re-run the pre-processing pipeline from the raw data and confirm the outputs are identical \\
+  \addlinespace
+  \textbf{D3} Model source code and final models &
+  Implements FR4--FR10: baseline, GA, PSO, SA and priority-based feature formation, and the four classifiers evaluated with 10-fold cross-validation; seeds and parameters are recorded (NFR9); the final model loads and returns predictions; NFR1 is met or the shortfall is documented. &
+  Run the code in a clean environment by following the README; repeat one experiment with the same seed and compare results \\
+  \addlinespace
+  \textbf{D4} AI model report and README &
+  Up to 3,000 words (PDF); answers RQ1 with a comparison against PRISMO's reported results; cites sources in Harvard style; the README lets someone outside the team run the code. &
+  Word count; a member who did not write the README follows it from scratch \\
+
+  \multicolumn{3}{@{}l}{\cellcolor{brandprimary!8}\textbf{\sffamily Assignment 3 -- due Sun 6 Dec}} \\
+  \textbf{D5} Web application source code &
+  All \textbf{Must} functional requirements are implemented, including the React front end, FastAPI back end with GET and POST endpoints, at least three interactive chart types, decision-support features and study mode; input is validated in both front end and back end; the layout is responsive (NFR7); response times meet NFR3; no critical defects; \texttt{node\_modules} is excluded from the ZIP file. &
+  Every \textbf{Must} test case in the test plan (WBS 6.2) passes; requirements checklist signed off \\
+  \addlinespace
+  \textbf{D6} User study results &
+  The study follows the approved protocol and any ethics requirements (NFR12); at least 8 participants take part, or the contingency plan for R3 or R4 is documented; RQ2--RQ5 are each answered with data; SUS scores are calculated correctly; all data is anonymous. &
+  Analysis reviewed by a second member; raw data checked to confirm it contains no identifying information \\
+  \addlinespace
+  \textbf{D7} Web application report &
+  Covers every section required by the brief: project title and group information on the cover, system architecture, front-end and back-end implementation with API documentation, AI model integration, conclusion and future work, Harvard-style bibliography and appendices; includes the user study findings. &
+  Section-by-section checklist against the assessment brief \\
+  \addlinespace
+  \textbf{D8} Demonstration video &
+  No longer than 7 minutes (MP4 or AVI); demonstrates every feature and interaction and the complete workflow from input to visualised results; shows responsiveness on desktop, tablet and mobile; explains key technical decisions and challenges. &
+  Video script mapped to the feature list; final video timed and reviewed by all members \\
+
+  \multicolumn{3}{@{}l}{\cellcolor{brandprimary!8}\textbf{\sffamily Closure -- Tue 8 Dec}} \\
+  \textbf{D9} Lessons learned record &
+  A retrospective is held with all members; lessons are recorded in the lessons learned register; the repository is tagged and archived. &
+  Project Manager confirms the closure checklist (Section~\ref{sec:closure-activities}) \\
+\end{longtable}
+}
+
+\subsection{Deliverable Handover}\label{sec:handover}
+
+Table~\ref{tab:handover} lists what will be handed over, to whom and in what form.
+
+\begin{table}[htbp]
+\centering
+\caption{Deliverable handover plan}
+\label{tab:handover}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth} >{\raggedright\arraybackslash}p{0.14\textwidth} >{\raggedright\arraybackslash}X l l@{}}
+  \toprule
+  \textbf{Item} & \textbf{Recipient} & \textbf{Format and Location} & \textbf{Date} & \textbf{Owner} \\
+  \midrule
+  Assessment submissions (D1, D2--D4, D5--D8) & Tutor & PDF reports, ZIP files and MP4 video, submitted through the unit's learning management system & Each deadline & TKN \\
+  \addlinespace
+  Source code, final models and README & Tutor; team & GitHub repository tagged at each submission (\texttt{a2-submission}, \texttt{a3-submission}) & 6 Dec & HDN \\
+  \addlinespace
+  API documentation & Tutor; future developers & In the Assignment~3 report, and generated automatically by FastAPI as interactive OpenAPI documentation & 6 Dec & HDN \\
+  \addlinespace
+  Experiment records & Team; future researchers & Parameter and seed logs, results tables and feature subsets in the repository & 2 Nov & NKNT \\
+  \addlinespace
+  Project records & Team & Final plan, minutes, status reports, risk register and change log in the shared folder & 8 Dec & TKN \\
+  \bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Data handling at closure.} At closure, only anonymised user study results are kept. Any raw study data or consent records are retained or destroyed as required by Swinburne's guidance (NFR12). Local copies of datasets with restricted terms of use are deleted if their terms require it (R13). The repository is checked to ensure it contains no credentials or personal data before it is archived.
+
+\subsection{Closure Activities and Lessons Learned}\label{sec:closure-activities}
+
+\paragraph{Closure checklist.} The Project Manager is responsible for completing the following activities:
+
+\begin{enumerate}[nosep]
+  \item Confirm that every acceptance criterion in Table~\ref{tab:acceptance} has been met at the final pre-submission review (Fri 4 Dec).
+  \item Submit Assignment~3 (Sun 6 Dec).
+  \item Tag the final release in Git, then archive the repository and project documents.
+  \item Complete the data handling steps above.
+  \item Close the risk register and change log, recording the final status of every risk and change request.
+  \item Produce a final effort report comparing actual and estimated hours for each work package.
+  \item Hold the final retrospective (Tue 8 Dec) and record lessons learned.
+  \item Formally close the project and confirm with all members that no outstanding actions remain.
+\end{enumerate}
+
+\paragraph{Lessons learned.} Lessons are captured throughout the project rather than only at the end, so that they can be applied while the project is still running. A short \textbf{stage retrospective} is held at the first weekly meeting after Assignment~1 and Assignment~2, and lessons from Stage~2 (such as the accuracy of effort estimates and how the dataset risk played out) are applied to the plan for Stage~3. The \textbf{final retrospective} on 8 December reviews the whole project using three questions: \emph{what went well}, \emph{what did not go well}, and \emph{what should be done differently next time}. It draws on objective records, including planned versus actual milestones, the weekly SPI and EPI history, the risks that occurred compared with those predicted, and the change request log.
+
+Each lesson is recorded in the lessons learned register (Table~\ref{tab:lessons}) with a concrete recommendation, so that it can be reused by team members in future projects.
+
+\begin{table}[htbp]
+\centering
+\caption{Lessons learned register (structure)}
+\label{tab:lessons}
+\begin{tabularx}{\textwidth}{@{}l l >{\raggedright\arraybackslash}p{0.17\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X@{}}
+  \toprule
+  \textbf{ID} & \textbf{Stage} & \textbf{Category} & \textbf{What Happened and Its Impact} & \textbf{Recommendation} \\
+  \midrule
+  LL-\textit{nn} & 1--4 & Planning, Technical, Team or Stakeholder & Description of the event or observation and its effect on the project & Specific action to repeat or avoid in future projects \\
+  \midrule
+  \multicolumn{5}{@{}l}{\footnotesize\itshape Completed at each stage retrospective and at the final retrospective.} \\
+  \bottomrule
+\end{tabularx}
+\end{table}

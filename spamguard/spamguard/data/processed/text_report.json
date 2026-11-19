@@ -1,0 +1,64 @@
+{
+  "max_tweets_per_account": 20,
+  "filter": "fast-langdetect lid.176 (lite), English with score >= 0.5 and >= 3 words",
+  "n_folds": 5,
+  "by_group": [
+    {
+      "group": "E13",
+      "accounts": 1481,
+      "without_english_text": 183,
+      "english_tweets": 24348,
+      "tweets_considered": 268040,
+      "share_tweets_english": 0.09083718847933145
+    },
+    {
+      "group": "TFP",
+      "accounts": 465,
+      "without_english_text": 39,
+      "english_tweets": 12950,
+      "tweets_considered": 71342,
+      "share_tweets_english": 0.18152000224271816
+    },
+    {
+      "group": "genuine_accounts",
+      "accounts": 1083,
+      "without_english_text": 0,
+      "english_tweets": 144666,
+      "tweets_considered": 212249,
+      "share_tweets_english": 0.6815862501118969
+    },
+    {
+      "group": "social_spambots_1",
+      "accounts": 991,
+      "without_english_text": 759,
+      "english_tweets": 1304,
+      "tweets_considered": 198110,
+      "share_tweets_english": 0.006582201807076877
+    },
+    {
+      "group": "social_spambots_2",
+      "accounts": 3457,
+      "without_english_text": 1,
+      "english_tweets": 277788,
+      "tweets_considered": 374258,
+      "share_tweets_english": 0.7422366388961625
+    },
+    {
+      "group": "social_spambots_3",
+      "accounts": 464,
+      "without_english_text": 0,
+      "english_tweets": 83152,
+      "tweets_considered": 92627,
+      "share_tweets_english": 0.8977080117028512
+    },
+    {
+      "group": "traditional_spambots_1",
+      "accounts": 1000,
+      "without_english_text": 178,
+      "english_tweets": 20559,
+      "tweets_considered": 47540,
+      "share_tweets_english": 0.43245687841817415
+    }
+  ],
+  "accounts_without_english_text": 1160
+}

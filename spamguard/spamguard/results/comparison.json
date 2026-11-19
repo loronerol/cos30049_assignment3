@@ -1,0 +1,204 @@
+{
+  "rows": [
+    {
+      "model": "PRISMO RF on FS4 (9 features)",
+      "status": "ok",
+      "hardware": "Intel(R) Core(TM) Ultra 9 185H",
+      "note": "",
+      "test": {
+        "accuracy": 0.9893795416433762,
+        "tpr": 0.9881656804733728,
+        "tnr": 0.9917491749174917,
+        "precision": 0.995741056218058,
+        "f1_spam": 0.9919389053882054,
+        "f1_macro": 0.988188944913595,
+        "roc_auc": 0.9954407740013222
+      },
+      "test_en": {
+        "accuracy": 0.9884836852207294,
+        "tpr": 0.986986986986987,
+        "tnr": 0.9911347517730497,
+        "precision": 0.9949545913218971,
+        "f1_spam": 0.9909547738693467,
+        "f1_macro": 0.9875548517234057,
+        "roc_auc": 0.9949231146039657
+      },
+      "inference_ms": 0.04725930687818882,
+      "train_seconds": 0.5308168999999907,
+      "features": 9,
+      "uses_text": false
+    },
+    {
+      "model": "RF on FS4 + text score (11 features)",
+      "status": "ok",
+      "hardware": "Intel(R) Core(TM) Ultra 9 185H",
+      "note": "FS4 kept text_spam_score",
+      "test": {
+        "accuracy": 0.9877026271660145,
+        "tpr": 0.9873203719357565,
+        "tnr": 0.9884488448844885,
+        "precision": 0.9940425531914894,
+        "f1_spam": 0.9906700593723494,
+        "f1_macro": 0.9863186362435518,
+        "roc_auc": 0.9958222787621112
+      },
+      "test_en": {
+        "accuracy": 0.9891234804862444,
+        "tpr": 0.985985985985986,
+        "tnr": 0.9946808510638298,
+        "precision": 0.9969635627530364,
+        "f1_spam": 0.9914443885254152,
+        "f1_macro": 0.9882595076955434,
+        "roc_auc": 0.9954023172108277
+      },
+      "inference_ms": 0.010780435995927082,
+      "train_seconds": 0.6715958999993745,
+      "features": 11,
+      "uses_text": true
+    },
+    {
+      "model": "L1 text encoder alone (Twitter RoBERTa)",
+      "status": "ok",
+      "hardware": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "note": "",
+      "test": {
+        "accuracy": 0.9547233091112354,
+        "tpr": 0.9797125950972105,
+        "tnr": 0.905940594059406,
+        "precision": 0.953125,
+        "f1_spam": 0.9662359316381826,
+        "f1_macro": 0.9487668207809233,
+        "roc_auc": 0.9852921894049085
+      },
+      "test_en": {
+        "accuracy": 0.9750479846449136,
+        "tpr": 0.975975975975976,
+        "tnr": 0.973404255319149,
+        "precision": 0.9848484848484849,
+        "f1_spam": 0.9803921568627451,
+        "f1_macro": 0.9730456826530084,
+        "roc_auc": 0.9943276609943277
+      },
+      "train_seconds": 593.5686291999882,
+      "inference_ms": 3.4812941405562015
+    },
+    {
+      "model": "Qwen2.5-3B zero-shot (local, no training)",
+      "status": "ok",
+      "hardware": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "note": "",
+      "test": {
+        "accuracy": 0.41866964784795974,
+        "tpr": 0.5105663567202029,
+        "tnr": 0.23927392739273928,
+        "precision": 0.5671361502347417,
+        "f1_spam": 0.5373665480427047,
+        "f1_macro": 0.37770583041232975,
+        "roc_auc": 0.43358957620191435
+      },
+      "test_en": {
+        "accuracy": 0.36148432501599487,
+        "tpr": 0.42042042042042044,
+        "tnr": 0.2570921985815603,
+        "precision": 0.5005959475566151,
+        "f1_spam": 0.45701849836779107,
+        "f1_macro": 0.34108688893544836,
+        "roc_auc": 0.35818975003372167
+      },
+      "train_seconds": 0.0,
+      "inference_ms": 302.56052962548904
+    },
+    {
+      "model": "L2 QLoRA Qwen2.5-3B",
+      "status": "ok",
+      "hardware": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "note": "trained on 3500 accounts",
+      "test": {
+        "accuracy": 0.9821129122414757,
+        "tpr": 0.9864750633981403,
+        "tnr": 0.9735973597359736,
+        "precision": 0.9864750633981403,
+        "f1_spam": 0.9864750633981403,
+        "f1_macro": 0.9800362115670569,
+        "roc_auc": 0.9954735541178802
+      },
+      "test_en": {
+        "accuracy": 0.982725527831094,
+        "tpr": 0.986986986986987,
+        "tnr": 0.975177304964539,
+        "precision": 0.986,
+        "f1_spam": 0.9864932466233116,
+        "f1_macro": 0.9812679187863674,
+        "roc_auc": 0.9954546745326887
+      },
+      "train_seconds": 6083.6272513,
+      "inference_ms": 1104.455751201791
+    },
+    {
+      "model": "L3 Claude zero-shot",
+      "status": "not run",
+      "note": "skipped (paid; needs an API key)"
+    }
+  ],
+  "adversarial": {
+    "n_accounts": 201,
+    "rewriter": "local",
+    "parse_failures": 0,
+    "prismo_rf_fs4": {
+      "tpr_before": 0.9850746268656716,
+      "tpr_after": 0.9850746268656716,
+      "tpr_drop": 0.0
+    },
+    "text_encoder": {
+      "tpr_before": 0.9751243781094527,
+      "tpr_after": 0.527363184079602,
+      "mean_score_before": 0.973260223865509,
+      "mean_score_after": 0.5334715247154236,
+      "tpr_drop": 0.4477611940298507
+    },
+    "rf_fs4_plus_text": {
+      "tpr_before": 0.9850746268656716,
+      "tpr_after": 0.9850746268656716,
+      "text_feature_in_model": true,
+      "tpr_drop": 0.0
+    },
+    "qlora_llm": {
+      "tpr_before": 0.9850746268656716,
+      "tpr_after": 0.9850746268656716,
+      "tpr_drop": 0.0
+    },
+    "features_changed_by_rewrite": [
+      "hashtags_per_tweet_max",
+      "hashtags_per_tweet_mean",
+      "urls_per_tweet_max",
+      "urls_per_tweet_mean",
+      "urls_per_tweet_median",
+      "mentions_per_tweet_max",
+      "mentions_per_tweet_mean",
+      "mentions_per_tweet_median",
+      "chars_per_tweet_max",
+      "chars_per_tweet_min",
+      "chars_per_tweet_mean",
+      "chars_per_tweet_median",
+      "words_per_tweet_max",
+      "words_per_tweet_min",
+      "words_per_tweet_mean",
+      "words_per_tweet_median",
+      "digits_per_tweet_max",
+      "digits_per_tweet_min",
+      "digits_per_tweet_mean",
+      "digits_per_tweet_median",
+      "frac_tweets_with_url",
+      "frac_tweets_with_hashtag",
+      "frac_tweets_with_mention",
+      "frac_retweets",
+      "frac_tweets_with_spam_word",
+      "frac_duplicate_tweets",
+      "distinct_mentions_per_tweet",
+      "inter_tweet_hours_max",
+      "inter_tweet_hours_min",
+      "inter_tweet_hours_mean",
+      "inter_tweet_hours_median"
+    ]
+  }
+}

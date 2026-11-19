@@ -1,0 +1,168 @@
+% =====================================================================
+%  7. MONITORING AND CONTROL
+% =====================================================================
+\section{Monitoring and Control}\label{sec:monitoring}
+
+Monitoring and control compare actual progress with the plan, so that problems are detected early and corrected before they threaten an assessment deadline \parencite{pmi2021pmbok}. This section describes how progress is tracked and reported, how quality is controlled, and how changes to the approved plan are managed.
+
+\subsection{Progress Monitoring and Reporting}\label{sec:progress}
+
+\paragraph{Tools.} The team uses a small set of shared tools so that the state of the project is always visible to every member:
+
+\begin{itemize}[nosep]
+  \item \textbf{GitHub} -- the code repository, with a \emph{GitHub Projects} task board in which every task is an issue labelled with its WBS ID (e.g.\ \texttt{WBS-3.2}), owner, estimate and due date. Changes are made on feature branches and merged through reviewed pull requests.
+  \item \textbf{Overleaf} -- collaborative editing of this plan and of the assessment reports.
+  \item \textbf{Shared cloud folder} -- datasets, experiment outputs, meeting minutes and status reports.
+  \item \textbf{Google Meet} -- the weekly team meetings, held on Mondays from 8:00 to 9:00~pm since the kick-off on 20 September.
+  \item \textbf{Team messaging channel} -- day-to-day communication and the mid-week check-in.
+\end{itemize}
+
+\paragraph{Meetings and reporting.} Table~\ref{tab:reporting} defines the regular monitoring activities.
+
+\begin{table}[htbp]
+\centering
+\caption{Monitoring and reporting activities}
+\label{tab:reporting}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.2\textwidth} >{\raggedright\arraybackslash}p{0.17\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.19\textwidth}@{}}
+  \toprule
+  \textbf{Activity} & \textbf{When} & \textbf{Purpose} & \textbf{Output} \\
+  \midrule
+  Weekly team meeting & Every Monday (60 min) & Review progress against the schedule, update the risk register, decide on change requests and agree the coming week's tasks & Minutes; updated task board and risk register \\
+  \addlinespace
+  Mid-week check-in & Every Thursday (written) & Each member posts what they have done, what they will do next and any blockers & Check-in thread \\
+  \addlinespace
+  Tutor consultation & Weekly class & Report status, High risks and key decisions to the tutor; obtain feedback & Notes of feedback and actions \\
+  \addlinespace
+  Weekly status report & Every Monday & One-page summary of status, accomplishments, next steps, issues and decisions needed & Status report in the shared folder \\
+  \addlinespace
+  Milestone review & At each milestone (Table~\ref{tab:milestones}) & Confirm the milestone's completion evidence has been met & Milestone marked complete or re-planned \\
+  \addlinespace
+  Pre-submission review & Two days before each assessment deadline & Check every deliverable against the assessment brief and requirements & Submission checklist signed off by all members \\
+  \bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Performance measures.} Progress is measured with simple earned value indicators based on the effort estimates in the WBS dictionary \parencite{pmi2021pmbok}. Each Monday, the Project Manager calculates:
+
+\begin{itemize}[nosep]
+  \item \textbf{Planned value (PV)} -- the estimated hours of work that should have been completed by that date;
+  \item \textbf{Earned value (EV)} -- the estimated hours of the work actually completed;
+  \item \textbf{Actual effort (AE)} -- the hours actually spent, as logged by members on their task cards;
+  \item \textbf{Schedule Performance Index} $\text{SPI} = \text{EV} / \text{PV}$ (below 1 means behind schedule);
+  \item \textbf{Effort Performance Index} $\text{EPI} = \text{EV} / \text{AE}$ (below 1 means work is taking longer than estimated).
+\end{itemize}
+
+These indicators, together with the other measures in Table~\ref{tab:kpis}, determine the project's weekly red--amber--green (RAG) status.
+
+\begin{table}[htbp]
+\centering
+\caption{Performance measures and status thresholds}
+\label{tab:kpis}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.16\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth}@{}}
+  \toprule
+  \textbf{Area} & \textbf{Measure} & \cellcolor{risklow}\textbf{Green} & \cellcolor{riskmed}\textbf{Amber} & \cellcolor{riskcrit}\textbf{Red} \\
+  \midrule
+  Schedule & SPI; milestones met on time & SPI $\geq$ 0.95 & 0.85 $\leq$ SPI $<$ 0.95 & SPI $<$ 0.85 or milestone missed \\
+  Effort & EPI; contingency hours remaining & EPI $\geq$ 0.9 & 0.8 $\leq$ EPI $<$ 0.9 & EPI $<$ 0.8 or contingency used up \\
+  Scope & Must requirements complete versus plan; approved changes & On plan & One Must requirement behind & Must requirement at risk for an assessment \\
+  Quality & Open defects; pull requests awaiting review & No critical defects & Critical defect open $\leq$ 2 days & Critical defect open $>$ 2 days \\
+  Risk & Open High and Critical risks & No trigger reached & High risk triggered & Critical risk identified \\
+  \bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Corrective action.} An Amber status is discussed at the next weekly meeting, and the owner proposes a recovery action such as reassigning tasks, pairing members or using contingency hours. A Red status is handled immediately: the Project Manager calls a short meeting, the recovery plan is agreed within 24 hours, and the tutor is informed at the next consultation. Any recovery action that alters scope, milestones or deliverables goes through change control.
+
+\paragraph{Quality control.} Work is only marked \emph{done} on the task board when it meets the team's \textbf{definition of done}:
+
+\begin{enumerate}[nosep]
+  \item the work satisfies the requirements linked to its WBS package;
+  \item code has been reviewed and approved by at least one other member through a pull request;
+  \item relevant tests pass, and experiments are reproducible with recorded seeds and parameters (NFR9);
+  \item documentation (README, comments or report notes) has been updated.
+\end{enumerate}
+
+\subsection{Change Control Process}\label{sec:change-control}
+
+Once this plan is submitted on 11 October, version~1.0 becomes the project's \textbf{baseline} for scope, schedule and effort. Changes to the baseline are inevitable, for example if the PRISMO dataset is unavailable or the user study cannot go ahead, but they must be deliberate, assessed and recorded rather than made informally.
+
+\paragraph{What requires change control.} A formal change request is required for any change that:
+
+\begin{itemize}[nosep]
+  \item adds, removes or alters a requirement, deliverable or work package;
+  \item moves a milestone, or changes a package's effort by more than four hours;
+  \item changes the dataset, the core technology stack or the research questions; or
+  \item uses more than eight hours of the contingency reserve.
+\end{itemize}
+
+Smaller adjustments that do not affect milestones or \textbf{Must} requirements, such as re-ordering tasks within a week, are managed by the package owner and noted on the task board.
+
+\paragraph{Roles.} Any team member, or the tutor, may request a change. The Project Manager logs each request and coordinates its assessment. The \textbf{Change Control Board} consists of all four team members. It decides by consensus, with the Project Manager making the final decision if consensus cannot be reached. Changes that affect assessment requirements are discussed with the tutor before they are approved.
+
+\paragraph{Process.} Figure~\ref{fig:change-control} shows the change control process.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    proc/.style={draw=brandprimary, fill=brandprimary!6, rounded corners=3pt, align=center,
+                 font=\footnotesize\sffamily, text width=2.2cm, minimum height=1.3cm},
+    decision/.style={diamond, draw=brandaccent, fill=brandaccent!8, align=center,
+                     font=\footnotesize\sffamily, aspect=1.6, inner sep=1pt, text width=1.4cm},
+    arrow/.style={-{Stealth[length=2.2mm]}, thick, brandprimary!80},
+    lbl/.style={font=\scriptsize\sffamily\itshape, text=brandmuted}
+]
+  % Fixed coordinates keep the figure within the text width (about 14.7 cm)
+  \node[proc] (submit) at (0,0) {\textbf{1} Submit change request};
+  \node[proc] (log) at (3.0,0) {\textbf{2} Log and assign CR ID};
+  \node[proc] (assess) at (6.0,0) {\textbf{3} Assess impact (within 2 days)};
+  \node[decision] (decide) at (9.2,0) {\textbf{4} CCB decision};
+  \node[proc] (implement) at (9.2,-2.4) {\textbf{5a} Implement and update baselines};
+  \node[proc] (reject) at (12.3,-2.4) {\textbf{5b} Record reason and notify requester};
+  \node[proc] (close) at (3.0,-2.4) {\textbf{6} Update log, communicate and close};
+
+  \draw[arrow] (submit) -- (log);
+  \draw[arrow] (log) -- (assess);
+  \draw[arrow] (assess) -- (decide);
+  \draw[arrow] (decide) -- node[lbl, right] {Approve} (implement);
+  \draw[arrow] (decide.east) -| node[lbl, pos=0.25, above] {Reject / defer} (reject.north);
+  \draw[arrow] (implement) -- (close);
+  \draw[arrow] (reject.south) -- ++(0,-0.5) -| (close.south);
+\end{tikzpicture}
+\caption{Change control process}
+\label{fig:change-control}
+\end{figure}
+
+\begin{enumerate}[nosep]
+  \item \textbf{Submit.} The requester opens a GitHub issue labelled \texttt{change-request}, describing the change and the reason for it.
+  \item \textbf{Log.} The Project Manager assigns a change request ID (CR-\textit{nnn}) and adds it to the change request log.
+  \item \textbf{Assess impact.} The owners of the affected packages assess the impact on scope, schedule, effort, risks, quality and the requirements traceability (Table~\ref{tab:traceability}) within two days.
+  \item \textbf{Decide.} The Change Control Board approves, rejects or defers the request at the next weekly meeting. Urgent requests can be decided by a vote in the messaging channel within 24 hours.
+  \item \textbf{Implement or record.} Approved changes are implemented, and every affected baseline is updated: the requirements, WBS, schedule, risk register and this plan's version history. For rejected or deferred requests, the reason is recorded and the requester is notified.
+  \item \textbf{Close.} The log is updated, and the decision is communicated to the team and, where relevant, to the tutor.
+\end{enumerate}
+
+\paragraph{Change freezes.} No scope changes are accepted after the code freeze (M12, 2 December), or within three days of any assessment deadline, except to fix critical defects. Each submitted version of the code is tagged in Git (e.g.\ \texttt{a2-submission}, \texttt{a3-submission}) so that it can always be recovered.
+
+\subsection{Change Request Log}\label{sec:change-log}
+
+Table~\ref{tab:change-log} shows the change request log. The three entries record major decisions made at team meetings while this plan was being prepared, before the baseline was set. They were assessed and agreed by the team in the same way, and are recorded in the minutes of Meetings~2 and~3. Future requests will be tracked through GitHub issues and added to this log.
+
+{\renewcommand{\arraystretch}{1.2}\small
+\begin{longtable}{@{}l l >{\raggedright\arraybackslash}p{0.33\textwidth} >{\raggedright\arraybackslash}p{0.27\textwidth} >{\raggedright\arraybackslash}p{0.11\textwidth}@{}}
+  \caption{Change request log}\label{tab:change-log} \\
+  \toprule
+  \textbf{CR ID} & \textbf{Date} & \textbf{Change and Reason} & \textbf{Impact} & \textbf{Decision} \\
+  \midrule
+  \endfirsthead
+  \multicolumn{5}{@{}l}{\small\itshape Table~\thetable{} continued} \\
+  \toprule
+  \textbf{CR ID} & \textbf{Date} & \textbf{Change and Reason} & \textbf{Impact} & \textbf{Decision} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endlastfoot
+  CR-001 & 21 Sep & Adopt PRISMO \parencite{agrawal2018prismo} as the methodological basis and reproduce its method, rather than its exact results, to give the project a clear, evidence-based approach. & Requirements FR1--FR10 and WBS 2--4 restructured around PRISMO's three phases. & Approved (pre-baseline) \\
+  CR-002 & 21 Sep & Add a moderator-centred decision-support focus and a user study (RQ2--RQ5) as the project's unique contribution. & New FR12, FR13, FR21--FR23 and NFR12; WBS 5.5, 6.3 and 6.4 added; about 36 hours added. & Approved (pre-baseline) \\
+  CR-003 & 28 Sep & Align the plan with the unit's assessment brief and deadlines: interactive charts become Must, React and FastAPI are required, mobile responsiveness is added, and the dataset decision window shortens to one week. & FR17--FR19 and NFR7 updated; schedule rebuilt around three deadlines; effort re-estimated to 386 hours at 12 hours per member per week. & Approved (pre-baseline) \\
+\end{longtable}
+}

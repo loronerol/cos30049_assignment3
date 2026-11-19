@@ -1,0 +1,9 @@
+[18:44:48] 12 spam test accounts: {'social_spambots_2': 8, 'traditional_spambots_1': 2, 'social_spambots_1': 1, 'social_spambots_3': 1}
+W1019 18:47:49.340000 6756 Lib\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+W1019 18:47:52.474000 6756 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+[18:48:27] rewrote 16/183 tweets
+[18:50:14] rewrites usable for 12/12 accounts (0 not rewritten)
+[18:51:04] prismo_rf_fs4: TPR 1.000 -> 1.000 (drop 0.000)
+[18:51:04] text_encoder: TPR 1.000 -> 0.500 (drop 0.500)
+[18:51:04] rf_fs4_plus_text: TPR 1.000 -> 1.000 (drop 0.000)
+[18:51:04] qlora_llm: TPR 1.000 -> 1.000 (drop 0.000)
